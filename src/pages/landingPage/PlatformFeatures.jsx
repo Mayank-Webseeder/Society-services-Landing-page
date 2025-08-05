@@ -3,7 +3,7 @@ import SocietyFeaturesSection from './SocietyFeaturesSection';
 import VendorFeaturesSection from './VendorFeaturesSection';
 
 
-const PlatformFeatures = () => {
+const PlatformFeatures = ({ howItWorksRef }) => {
 
   return (
     <Box 
@@ -14,7 +14,10 @@ const PlatformFeatures = () => {
       }}
     >
       {/* Society Platform Features */}
-      <SocietyFeaturesSection />
+      <div ref={howItWorksRef}>
+        <SocietyFeaturesSection />
+      </div>
+
 
       {/* Vendor Platform Features */}
       <VendorFeaturesSection />

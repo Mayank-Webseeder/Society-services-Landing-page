@@ -2,7 +2,9 @@ import { Box } from '@mui/material';
 import ServicesShowcase from './ServicesShowcase';
 import PlatformFeatures from './PlatformFeatures';
 
-const LandingHero = () => {
+
+const LandingHero = ({ servicesRef, howItWorksRef }) => {
+  
   return (
     <Box
       sx={{
@@ -11,13 +13,15 @@ const LandingHero = () => {
       }}
     >
       {/* Services Showcase Section */}
-      <ServicesShowcase />
+      <div ref={servicesRef}>
+        <ServicesShowcase />
+      </div>
 
       {/* Add spacing between the two components */}
       <Box sx={{ height: 48 }} />
 
-      {/* Platform Features Section */}
-      <PlatformFeatures />
+      {/* Platform Features Section (will handle howItWorksRef inside) */}
+      <PlatformFeatures howItWorksRef={howItWorksRef} />
     </Box>
   );
 };

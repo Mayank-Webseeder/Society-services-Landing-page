@@ -6,8 +6,8 @@ import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/materi
 const VENDOR_URL = import.meta.env.VITE_VENDOR_URL;
 
 
-const LandingNavbar = () => {
-
+const LandingNavbar = ({ refs }) => {
+  
   const navigate = useNavigate();
   const [showNavbar, setShowNavbar] = useState(true);
 
@@ -28,13 +28,22 @@ const LandingNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Logical scroll handler
+  const scrollToSection = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navItems = [
-    { label: 'Services', path: '/services' },
-    { label: 'How It Works', path: '/how-it-works' },
-    { label: 'Testimonials', path: '/testimonials' },
-    { label: 'FAQs', path: '/faqs' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Services', onClick: () => scrollToSection(refs?.servicesRef) },
+    { label: 'How It Works', onClick: () => scrollToSection(refs?.howItWorksRef) },
+    { label: 'Testimonials', onClick: () => scrollToSection(refs?.testimonialsRef) },
+    { label: 'FAQs', onClick: () => scrollToSection(refs?.faqsRef) },
+    { label: 'Contact', onClick: () => scrollToSection(refs?.contactRef) },
   ];
+
+
 
   return (
     <AppBar
@@ -75,7 +84,7 @@ const LandingNavbar = () => {
           {/* Enhanced Logo */}
           <Typography
             variant="h5"
-            onClick={() => navigate('/')}
+            // onClick={() => navigate('/')}
             sx={{
               fontWeight: '800',
               background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 60%, #8b5cf6 100%)',
@@ -126,7 +135,7 @@ const LandingNavbar = () => {
             {navItems.map((item) => (
               <Button
                 key={item.label}
-                onClick={() => navigate(item.path)}
+                onClick={item.onClick}
                 sx={{
                   color: '#64748b',
                   fontWeight: '600',
