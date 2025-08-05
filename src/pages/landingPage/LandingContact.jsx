@@ -83,7 +83,7 @@ const LandingContact = () => {
               variant="h6"
               sx={{
                 color: '#64748b',
-                maxWidth: { xs: '90%', md: '500px' },
+                maxWidth: { xs: '90%', sm: '400px', md: '500px' },
                 mx: 'auto',
                 fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.1rem' },
                 lineHeight: { xs: 1.5, md: 1.6 },
@@ -107,8 +107,8 @@ const LandingContact = () => {
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-              gap: { xs: 3, md: 6 },
-              maxWidth: '1300px',
+              gap: { xs: 3, md: 1, lg: 6 },
+              maxWidth: { xs: '100%', lg:'95%', xl: '90%' },
               mx: 'auto',
             }}
           >

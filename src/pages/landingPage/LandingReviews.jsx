@@ -224,7 +224,7 @@ const LandingReviews = () => {
       />
       
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, px: { xs: 2, md: 3 } }}>
-        {/* Enhanced Heading */}
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -278,7 +278,7 @@ const LandingReviews = () => {
               variant="h6"
               sx={{
                 color: '#64748b',
-                maxWidth: { xs: '320px', md: '500px' },
+                maxWidth: { xs: '320px', sm: '400px', md: '500px' },
                 mx: 'auto',
                 fontSize: { xs: '0.9rem', md: '1.1rem' },
                 lineHeight: 1.6,
@@ -347,7 +347,7 @@ const LandingReviews = () => {
         </motion.div>
 
 
-        {/* Enhanced Reviews Grid */}
+        {/* Reviews Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -360,10 +360,10 @@ const LandingReviews = () => {
                 xs: 'repeat(2, 1fr)',
                 sm: 'repeat(2, 1fr)',
                 md: 'repeat(3, 1fr)',
-                lg: 'repeat(4, 1fr)'
+                lg: 'repeat(4, 1fr)',
               },
               gap: { xs: 2, md: 3 },
-              maxWidth: '1300px',
+              maxWidth: { sm: '90%' },
               mx: 'auto'
             }}
           >

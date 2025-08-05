@@ -49,7 +49,7 @@ const ContactForm = () => {
         borderRadius: '12px',
         p: { xs: 2, sm: 2.5, md: 3 },
         border: '1px solid #e2e8f0',
-        mx: { xs: 1, md: 0 },
+        mx: { sm: 3 }
       }}
     >
       {/* Form Title */}

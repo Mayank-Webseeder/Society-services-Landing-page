@@ -160,6 +160,7 @@ const ServicesShowcase = () => {
         >
           <Box sx={{ 
             display: 'flex', 
+            // border: '2px solid red',
             justifyContent: 'center', 
             mb: { xs: 3, md: 5 },
             position: 'relative',
@@ -168,14 +169,17 @@ const ServicesShowcase = () => {
           }}>
             <Box
               sx={{
+                // border: '2px solid green',
                 background: 'rgba(255, 255, 255, 0.8)',
                 backdropFilter: 'blur(20px)',
                 borderRadius: { xs: '12px', md: '16px' },
-                border: '1px solid rgba(226, 232, 240, 0.5)',
+                border: '2px solid rgba(226, 232, 240, 0.5)',
                 boxShadow: '0 6px 24px rgba(0, 0, 0, 0.06)',
                 p: { xs: 0.5, md: 0.8 },
-                width: { xs: '100%', md: 'auto' },
-                maxWidth: { xs: '100%', md: 'none' },
+                display: 'flex',
+                justifyContent: 'center',
+                width: { md: '100%', md: 'auto' },
+                maxWidth: { xs: '100%', md: '100%' },
               }}
             >
               <Tabs
@@ -411,7 +415,7 @@ const ServicesShowcase = () => {
               justifyContent: 'center',
               alignItems: 'center',
               gap: { xs: 2, md: 2.5 },
-              mt: { xs: 3, md: 5 },
+              mt: { xs: 5, md: 6 },
               px: { xs: 2, md: 0 },
               position: 'relative',
               zIndex: 2,

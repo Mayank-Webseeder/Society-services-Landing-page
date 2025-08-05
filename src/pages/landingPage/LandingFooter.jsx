@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Grid, Link, IconButton } from '@mui/material';
+import { Box, Container, Typography, Link, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -63,28 +63,22 @@ const LandingFooter = () => {
       sx={{
         background: 'linear-gradient(90deg, #0f172a 0%, #334155 100%)',
         borderTop: '1px solid #1e293b',
-        pt: { xs: 3, md: 5 },
+        pt: { xs: 2, md: 3 },
         pb: { xs: 1, md: 3 },
-        px: { xs: 0, md: 0 },
+        px: { xs: 0, md: 4, lg: 4, xl:1 },
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" className='flex justify-center'>
         <motion.div
-          // className='xs:w-[100%] sm:w-[90%]'
-          className='flex flex-col gap-12'
+          className='flex align-center flex-col gap-5 md:gap-8 lg:gap-12 w-full'
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           
         >
-          <Grid 
-            container 
-            spacing={{ xs: 3, md: 10 }} 
-            justifyContent='space-between'
-            
-          >
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-12 gap-3 sm:gap-5 justify-between">
             {/* VELRA Brand Section - Hidden on mobile */}
-            <Grid item xs={12} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+            <div className="hidden xl:block xl:col-span-4">
               <motion.div variants={itemVariants} className='max-w-lg'>
                 <Typography
                   variant="h4"
@@ -110,23 +104,23 @@ const LandingFooter = () => {
                   vendor coordination, and residential community services.
                 </Typography>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Quick Links */}
-            <Grid item xs={12} sm={6} md={2.25}>
+            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: '600',
                     color: '#f97316',
-                    fontSize: { xs: '1rem', md: '1.1rem' },
-                    mb: { xs: 1, md: 2 },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
+                    mb: { xs: 0.5, sm: 1, md: 2 },
                   }}
                 >
                   Quick Links
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1, md: 1.5 } }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {quickLinks.map((link) => (
                     <Link
                       key={link.label}
@@ -134,9 +128,9 @@ const LandingFooter = () => {
                       sx={{
                         color: '#cbd5e1',
                         textDecoration: 'none',
-                        fontSize: { xs: '0.9rem', md: '0.95rem' },
+                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
                         transition: 'color 0.3s ease',
-                        py: { xs: 0.25, md: 0 },
+                        py: { xs: 0.125, sm: 0.25, md: 0 },
                         '&:hover': {
                           color: '#3b82f6',
                         },
@@ -147,23 +141,23 @@ const LandingFooter = () => {
                   ))}
                 </Box>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Resources */}
-            <Grid item xs={12} sm={6} md={2.25}>
+            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: '600',
                     color: '#f97316',
-                    fontSize: { xs: '1rem', md: '1.1rem' },
-                    mb: { xs: 1, md: 2 },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
+                    mb: { xs: 0.5, sm: 1, md: 2 },
                   }}
                 >
                   Resources
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1, md: 1.5 } }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {resources.map((link) => (
                     <Link
                       key={link.label}
@@ -171,9 +165,9 @@ const LandingFooter = () => {
                       sx={{
                         color: '#64748b',
                         textDecoration: 'none',
-                        fontSize: { xs: '0.9rem', md: '0.95rem' },
+                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
                         transition: 'color 0.3s ease',
-                        py: { xs: 0.25, md: 0 },
+                        py: { xs: 0.125, sm: 0.25, md: 0 },
                         '&:hover': {
                           color: '#3b82f6',
                         },
@@ -184,23 +178,23 @@ const LandingFooter = () => {
                   ))}
                 </Box>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Legal */}
-            <Grid item xs={12} sm={6} md={2.25}>
+            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: '600',
                     color: '#f97316',
-                    fontSize: { xs: '1rem', md: '1.1rem' },
-                    mb: { xs: 1, md: 2 },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
+                    mb: { xs: 0.5, sm: 1, md: 2 },
                   }}
                 >
                   Legal
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1, md: 1.5 } }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {legalLinks.map((link) => (
                     <Link
                       key={link.label}
@@ -208,9 +202,9 @@ const LandingFooter = () => {
                       sx={{
                         color: '#64748b',
                         textDecoration: 'none',
-                        fontSize: { xs: '0.9rem', md: '0.95rem' },
+                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
                         transition: 'color 0.3s ease',
-                        py: { xs: 0.25, md: 0 },
+                        py: { xs: 0.125, sm: 0.25, md: 0 },
                         '&:hover': {
                           color: '#3b82f6',
                         },
@@ -221,26 +215,26 @@ const LandingFooter = () => {
                   ))}
                 </Box>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Stay Connected */}
-            <Grid item xs={12} md={4.5}>
+            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: '600',
                     color: '#f97316',
-                    fontSize: { xs: '1rem', md: '1.1rem' },
-                    mb: { xs: 1, md: 2 },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
+                    mb: { xs: 0.5, sm: 1, md: 2 },
                   }}
                 >
                   Stay Connected
                 </Typography>
                 <Box sx={{ 
                   display: 'flex', 
-                  gap: { xs: 1.5, md: 2 },
-                  justifyContent: { xs: 'center', md: 'flex-start' }
+                  gap: { xs: 1, sm: 1.5, md: 2 },
+                  justifyContent: 'flex-start'
                 }}>
                   {socialLinks.map((link, index) => (
                     <IconButton
@@ -248,8 +242,8 @@ const LandingFooter = () => {
                       sx={{
                         backgroundColor: link.color,
                         color: 'white',
-                        width: { xs: 36, md: 40 },
-                        height: { xs: 36, md: 40 },
+                        width: { xs: 30, sm: 36, md: 40 },
+                        height: { xs: 30, sm: 36, md: 40 },
                         transition: 'all 0.3s ease',
                         '&:hover': {
                           backgroundColor: link.hoverColor,
@@ -257,13 +251,13 @@ const LandingFooter = () => {
                         },
                       }}
                     >
-                      <link.icon fontSize="small" />
+                      <link.icon sx={{ fontSize: { xs: '14px', sm: 'small' } }} />
                     </IconButton>
                   ))}
                 </Box>
               </motion.div>
-            </Grid>
-          </Grid>
+            </div>
+          </div>
 
 
           {/* Bottom Copyright Section */}

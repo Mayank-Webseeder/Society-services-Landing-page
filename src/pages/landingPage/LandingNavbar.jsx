@@ -139,8 +139,9 @@ const LandingNavbar = ({ refs }) => {
                 sx={{
                   color: '#64748b',
                   fontWeight: '600',
-                  fontSize: '0.9rem',
-                  px: 2.5,
+                  fontSize: { md: '0.8rem', lg: '0.9rem' },
+                  px: { md: 0.5, lg: 1.5, xl: 2.5 },
+                  // border: '2px solid red',
                   py: 1,
                   borderRadius: '15px',
                   textTransform: 'none',

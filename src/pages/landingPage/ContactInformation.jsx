@@ -4,7 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const ContactInformation = () => {
   return (
-    <Box sx={{ pr: { md: 3 }, px: { xs: 1, md: 0 } }}>
+    <Box sx={{ pr: { md: 3 } }}>
       {/* Get in Touch Title */}
       <Typography
         variant="h4"

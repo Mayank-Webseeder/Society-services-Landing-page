@@ -123,7 +123,7 @@ const LandingIntro = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   gap: { xs: 1.5, md: 4 },
-                  mb: { xs: 3, md: 6 },
+                  mb: { xs: 5, md: 7 },
                   flexWrap: 'wrap',
                 }}
               >
@@ -272,12 +272,12 @@ const LandingIntro = () => {
               sx={{ mb: { xs: 5, md: 7 } }}
             >
               {[
-                { title: 'Home Services', icon: <HomeIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#3b82f6' }} />, color: '#3b82f6' },
-                { title: 'Maintenance & Repair', icon: <MaintenanceIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#10b981' }} />, color: '#10b981' },
-                { title: 'Security & Safety', icon: <SecurityIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#f59e0b' }} />, color: '#f59e0b' },
-                { title: 'Vendor Management', icon: <VendorIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#8b5cf6' }} />, color: '#8b5cf6' },
-                { title: 'Pricing Drops', icon: <PricingIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#ef4444' }} />, color: '#ef4444' },
-                { title: 'Emergency Support', icon: <EmergencyIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: '#f97316' }} />, color: '#f97316' },
+                { title: 'Home Services', icon: <HomeIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#3b82f6' }} />, color: '#3b82f6' },
+                { title: 'Maintenance & Repair', icon: <MaintenanceIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#10b981' }} />, color: '#10b981' },
+                { title: 'Security & Safety', icon: <SecurityIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#f59e0b' }} />, color: '#f59e0b' },
+                { title: 'Vendor Management', icon: <VendorIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#8b5cf6' }} />, color: '#8b5cf6' },
+                { title: 'Pricing Drops', icon: <PricingIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#ef4444' }} />, color: '#ef4444' },
+                { title: 'Emergency Support', icon: <EmergencyIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#f97316' }} />, color: '#f97316' },
               ].map((service, index) => (
                 <Grid item xs={6} sm={4} md={3} key={index}>
                   <motion.div
@@ -296,8 +296,8 @@ const LandingIntro = () => {
                         border: '1px solid rgba(226, 232, 240, 0.6)',
                         transition: 'all 0.4s ease',
                         cursor: 'pointer',
-                        height: { xs: '100px', md: '120px' },
-                        width: { xs: '120px', md: '140px'},
+                        height: { xs: '90px', md: '120px' },
+                        width: { xs: '110px', md: '140px'},
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
@@ -333,7 +333,7 @@ const LandingIntro = () => {
                         sx={{
                           fontWeight: '700',
                           color: service.color,
-                          fontSize: { xs: '0.75rem', md: '0.85rem' },
+                          fontSize: { xs: '0.70rem', md: '0.85rem' },
                           lineHeight: 1.3,
                           textAlign: 'center',
                         }}

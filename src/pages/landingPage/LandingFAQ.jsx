@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Container, Typography, Collapse, IconButton, Chip, Paper } from '@mui/material';
+import { Box, Container, Typography, Collapse, Chip, Paper } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ExpandMore as ExpandMoreIcon,
@@ -63,7 +63,7 @@ const LandingFAQ = () => {
       />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        {/* Enhanced Heading */}
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ const LandingFAQ = () => {
               variant="h6"
               sx={{
                 color: '#64748b',
-                maxWidth: { xs: '90%', md: '500px' },
+                maxWidth: { xs: '90%', sm: '400px', md: '500px' },
                 mx: 'auto',
                 fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.1rem' },
                 lineHeight: { xs: 1.5, md: 1.6 },
@@ -132,13 +132,13 @@ const LandingFAQ = () => {
         </motion.div>
 
 
-        {/* Enhanced FAQ List */}
+        {/* FAQ List */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <Box sx={{ maxWidth: { xs: '100%', md: '1000px' }, mx: 'auto' }}>
+          <Box sx={{ maxWidth: { xs: '100%', sm: '80%', xl: '1000px' }, mx: 'auto' }}>
             <AnimatePresence>
               {dummyFAQs.map((faq, index) => (
                 <motion.div
