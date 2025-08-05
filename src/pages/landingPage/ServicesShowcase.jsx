@@ -178,7 +178,7 @@ const ServicesShowcase = () => {
                 p: { xs: 0.5, md: 0.8 },
                 display: 'flex',
                 justifyContent: 'center',
-                width: { md: '100%', md: 'auto' },
+                width: "auto",
                 maxWidth: { xs: '100%', md: '100%' },
               }}
             >

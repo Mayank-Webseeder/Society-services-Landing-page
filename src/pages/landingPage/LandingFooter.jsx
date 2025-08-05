@@ -98,6 +98,7 @@ const LandingFooter = () => {
                     opacity: 0.6,
                     fontSize: '1rem',
                     lineHeight: 1.6,
+                    maxWidth: '360px'
                   }}
                 >
                   Driving growth with smart solutions across society management, 
