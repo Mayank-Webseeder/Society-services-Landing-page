@@ -9,7 +9,7 @@ const LandingAboutUs = () => {
     <Box
       sx={{
         py: { xs: 4, md: 6 },
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #f1f5f9 70%, #ffffff 100%)',
+        background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #e5e7eb 100%)',
         position: "relative",
         overflow: 'hidden',
       }}

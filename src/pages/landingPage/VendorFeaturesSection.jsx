@@ -206,14 +206,19 @@ const VendorFeaturesSection = () => {
                       onClick={() => handleDropdownClick(feature.id)}
                     >
                       <Box
-                        sx={{ px: { xs: 1.6, md: 2 }, py: { xs: 1.1, md: 2 } }}
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center', 
+                          px: { xs: 1.6, md: 2.5 }, 
+                          py: { xs: 1.1, md: 2.5 } 
+                        }}
                       >
                         <Box
                           sx={{
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "flex-start",
-                            mb: { xs: 1, md: 1.5 },
                           }}
                         >
                           <Box

@@ -1,402 +1,347 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, Button, Grid, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
-import { 
-  Star as StarIcon, 
-  TrendingUp as TrendingUpIcon,
-  EmojiEvents as MedalIcon,
+import {
   HomeWork as HomeIcon,
   Build as MaintenanceIcon,
   Security as SecurityIcon,
   Assignment as VendorIcon,
   TrendingDown as PricingIcon,
-  Emergency as EmergencyIcon
+  Emergency as EmergencyIcon,
+  Reviews as ReviewsIcon,
+  EmojiEvents as EmojiEventsIcon,
+  Insights as InsightsIcon
 } from '@mui/icons-material';
 
+// Motion variants for reuse
+const fadeSlide = (delay = 0) => ({
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut', delay } }
+});
+
+const staggerParent = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } }
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, scale: 0.9, y: 32 },
+  show: (i = 0) => ({ opacity: 1, scale: 1, y: 0, transition: { duration: 0.55, delay: 0.3 + i * 0.08 } })
+};
+
+const serviceCards = [
+  { title: 'Home Upkeep', icon: <HomeIcon />, color: '#0ea5e9' },
+  { title: 'Smart Security', icon: <SecurityIcon />, color: '#6366f1' },
+  { title: 'Rapid Repairs', icon: <MaintenanceIcon />, color: '#14b8a6' },
+  { title: 'Vendor Control', icon: <VendorIcon />, color: '#f59e0b' },
+  { title: 'Pricing Drops', icon: <PricingIcon />, color: '#dc2626' },
+  { title: '24/7 Emergency', icon: <EmergencyIcon />, color: '#f97316' },
+];
+
+const featureBullets = [
+  { label: 'Unified Requests', icon: <InsightsIcon fontSize="inherit" /> },
+  { label: 'Transparent Pricing', icon: <PricingIcon fontSize="inherit" /> },
+  { label: 'Verified Vendors', icon: <VendorIcon fontSize="inherit" /> },
+  { label: 'Incident Escalation', icon: <EmergencyIcon fontSize="inherit" /> },
+];
 
 const LandingIntro = () => {
-
   const navigate = useNavigate();
-
-  // Stats data - customize these for VELRA
-  const stats = [
-    {
-      icon: <StarIcon sx={{ fontSize: 20, color: '#f59e0b' }} />,
-      rating: '4.8',
-      reviews: '2,500+ Reviews',
-      label: 'Trusted Platform',
-    },
-    {
-      icon: <TrendingUpIcon sx={{ fontSize: 20, color: '#10b981' }} />,
-      rating: '',
-      reviews: '10,000+ Users',
-      label: 'Growing Community',
-    },
-    {
-      icon: <MedalIcon sx={{ fontSize: 20, color: '#3b82f6' }} />, // Changed icon to medal
-      rating: '',
-      reviews: 'Award-Winning',
-      label: 'Community Platform',
-    },
-  ];
-
 
   return (
     <Box
+      component="section"
       sx={{
-        minHeight: '70vh',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)',
         position: 'relative',
         overflow: 'hidden',
-        pt: { xs: 2, md: 5 },
-        pb: { xs: 5, md: 7 },
+        minHeight: { xs: 'auto', md: '80vh' },
         display: 'flex',
         alignItems: 'center',
+        py: { xs: 6, md: 10 },
+        background: 'linear-gradient(135deg,#f8fafc 0%,#ffffff 55%,#eef2f7 100%)'
       }}
     >
-      {/* Enhanced Background Pattern */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: `
-            radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-            radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
-            radial-gradient(circle at 60% 20%, rgba(249, 115, 22, 0.04) 0%, transparent 30%),
-            linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)
-          `,
-        }}
-      />
-      
-      {/* Floating Elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '10%',
-          left: '5%',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.05))',
-          opacity: 0.6,
-          animation: 'float 6s ease-in-out infinite',
-          '@keyframes float': {
-            '0%, 100%': { transform: 'translateY(0px)' },
-            '50%': { transform: 'translateY(-20px)' },
-          },
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '20%',
-          right: '8%',
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.05))',
-          opacity: 0.6,
-          animation: 'float 8s ease-in-out infinite reverse',
-        }}
-      />
+      {/* Soft ambient shapes */}
+      <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        <Box sx={{
+          position: 'absolute', top: '-140px', left: '-120px',
+          width: 420, height: 420,
+          background: 'linear-gradient(135deg,#bae6fd,#e0f2fe)',
+          opacity: 0.5, filter: 'blur(90px)', borderRadius: '50%'
+        }} />
+        <Box sx={{
+          position: 'absolute', bottom: '-160px', right: '-140px',
+          width: 480, height: 480,
+          background: 'linear-gradient(135deg,#e9d5ff,#ddd6fe)',
+          opacity: 0.55, filter: 'blur(100px)', borderRadius: '50%'
+        }} />
+        <Box sx={{
+          position: 'absolute', top: '20%', right: '15%',
+          width: 180, height: 180, borderRadius: '50%',
+          background: 'linear-gradient(135deg,#fde68a,#fff7ed)',
+          opacity: 0.35, filter: 'blur(50px)'
+        }} />
+      </Box>
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        {/* Hero Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Box sx={{ textAlign: 'center' }}>
-            {/* Enhanced Stats Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: { xs: 1.5, md: 4 },
-                  mb: { xs: 5, md: 7 },
-                  flexWrap: 'wrap',
-                }}
-              >
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 1,
-                        px: { xs: 2, md: 3 },
-                        py: { xs: 1, md: 1.5 },
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        borderRadius: '25px',
-                        backdropFilter: 'blur(15px)',
-                        border: '1px solid rgba(226, 232, 240, 0.6)',
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateY(-2px)',
-                          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
-                        },
-                      }}
-                    >
-                      {stat.icon}
-                      {stat.rating && (
-                        <Typography
-                          sx={{ 
-                            ml: -0.5,
-                            color: '#f59e0b', 
-                            fontWeight: '700',
-                            fontSize: { xs: '0.9rem', md: '1rem' },
-                          }}
-                        >
-                          {stat.rating}
-                        </Typography>
-                      )}
-                      <Box>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            fontWeight: '700',
-                            color: '#1e293b',
-                            fontSize: { xs: '0.75rem', md: '0.85rem' },
-                            lineHeight: 1.2,
-                          }}
-                        >
-                          {stat.reviews}
-                        </Typography>
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: '#64748b',
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            fontWeight: '500',
-                          }}
-                        >
-                          {stat.label}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </motion.div>
-                ))}
-              </Box>
-            </motion.div>
+      {/* Light pattern overlay */}
+      <Box sx={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'repeating-linear-gradient(60deg, rgba(15,23,42,0.06) 0px, rgba(15,23,42,0.06) 1px, transparent 1px, transparent 10px)',
+        opacity: 0.25,
+        mixBlendMode: 'multiply'
+      }} />
 
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+        <Box sx={{ maxWidth: 960, mx: 'auto' }}>
+          <motion.div variants={staggerParent} initial="hidden" animate="show" style={{ textAlign: 'center' }}>
 
-            {/* Enhanced Main Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+            {/* Heading */}
+            <motion.div variants={fadeSlide(0.1)}>
               <Typography
-                variant="h1"
+                component="h1"
                 sx={{
-                  fontWeight: '900',
-                  color: '#1e293b',
-                  mb: { xs: 2, md: 3 },
-                  fontSize: { xs: '2.2rem', sm: '3rem', md: '3.8rem', lg: '4.2rem' },
-                  lineHeight: { xs: 1.1, md: 1.05 },
-                  letterSpacing: '-0.03em',
-                  background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #8b5cf6 100%)',
+                  fontSize: { xs: '1.8rem', sm: '2.8rem', md: '3.2rem', lg: '3.5rem' },
+                  fontWeight: 800,
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.02em',
+                  background: 'linear-gradient(90deg, #0ea5e9 0%, #6366f1 50%, #0f172a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  textShadow: '0 4px 20px rgba(59, 130, 246, 0.3)',
+                  mb: { xs: 1.5, sm: 2.5 },
                 }}
               >
-                #1 Rated Community
-                <br />
-                <Box component="span" sx={{ 
-                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                  Services Platform
-                </Box>
+                A Single Operating Platform for<br /> Your Community Services
               </Typography>
             </motion.div>
 
-
-            {/* Enhanced Subheading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
+            {/* Subheading */}
+            <motion.div variants={fadeSlide(0.18)}>
               <Typography
-                variant="h5"
+                variant="body1"
                 sx={{
-                  color: '#64748b',
-                  maxWidth: '700px',
+                  fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' },
+                  lineHeight: 1.75,
+                  color: '#475569',
+                  maxWidth: { xs: 320, sm: 720 },
                   mx: 'auto',
-                  mb: { xs: 3, md: 7 },
-                  lineHeight: 1.6,
-                  fontSize: { xs: '0.8rem', md: '1.1rem' },
-                  fontWeight: '400',
-                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+                  // border: '2px solid red',
+                  mb: { xs: 4, sm: 7 },
                 }}
               >
-                One Easy-to-Use Platform for{' '}
-                <Box component="span" sx={{ 
-                  color: '#3b82f6', 
-                  fontWeight: '600',
-                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                  Everything Community Services
-                </Box>
+                {/* Shorter text for mobile screens */}
+                <span className="hidden sm:inline">
+                  Velra consolidates maintenance, safety, procurement and resident workflows—delivering clearer accountability, faster resolution times and measurable cost efficiency.
+                </span>
+                <span className="sm:hidden">
+                  Velra simplifies community management with unified workflows and measurable efficiency.
+                </span>
               </Typography>
             </motion.div>
 
 
-            {/* Enhanced Service Categories Grid */}
-            <Grid
-              container
-              spacing={{ xs: 1.5, md: 2 }}
-              justifyContent="center"
-              sx={{ mb: { xs: 5, md: 7 } }}
-            >
-              {[
-                { title: 'Home Services', icon: <HomeIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#3b82f6' }} />, color: '#3b82f6' },
-                { title: 'Maintenance & Repair', icon: <MaintenanceIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#10b981' }} />, color: '#10b981' },
-                { title: 'Security & Safety', icon: <SecurityIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#f59e0b' }} />, color: '#f59e0b' },
-                { title: 'Vendor Management', icon: <VendorIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#8b5cf6' }} />, color: '#8b5cf6' },
-                { title: 'Pricing Drops', icon: <PricingIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#ef4444' }} />, color: '#ef4444' },
-                { title: 'Emergency Support', icon: <EmergencyIcon sx={{ fontSize: { xs: '1.4rem', md: '1.8rem' }, color: '#f97316' }} />, color: '#f97316' },
-              ].map((service, index) => (
-                <Grid item xs={6} sm={4} md={3} key={index}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
+            {/* Feature bullets (Tailwind CSS grid layout) */}
+            <motion.div variants={fadeSlide(0.26)}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-12 max-w-[90%] lg:max-w-4xl mx-auto">
+                {featureBullets.map((f, i) => (
+                  <div
+                    key={f.label}
+                    className="relative flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 via-white to-blue-50 hover:bg-gradient-to-r hover:from-blue-100 hover:via-indigo-50 hover:to-blue-200 border-solid border border-gray-100 rounded-lg shadow-sm transition-all duration-700 overflow-hidden group"
                   >
+                    <div className="text-blue-500 text-2xl flex flex-shrink-0">
+                      {f.icon}
+                    </div>
+                    <p className="text-gray-800 font-medium text-sm md:text-base">
+                      {f.label}
+                    </p>
+                    {/* Left border animation */}
+                    <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* CTA buttons */}
+            <motion.div variants={fadeSlide(0.34)}>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center" alignItems='center' sx={{ mb: { xs: 5, sm: 8, lg: 10 } }}>
+                <Button
+                  onClick={() => navigate('/auth')}
+                  size="large"
+                  sx={{
+                    width: { xs:'90%', sm: 'fit-content' },
+                    background: 'linear-gradient(135deg,#0ea5e9 0%,#6366f1 70%)',
+                    color: '#fff',
+                    px: 5,
+                    py: 1.8,
+                    borderRadius: '14px',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    letterSpacing: 0.4,
+                    fontSize: '0.95rem',
+                    boxShadow: '0 6px 22px -4px rgba(14,165,233,0.45)',
+                    '&:hover': { background: 'linear-gradient(135deg,#0284c7 0%,#4f46e5 70%)' }
+                  }}
+                >
+                  Launch Platform
+                </Button>
+                <Button
+                  onClick={() => navigate('/contact')}
+                  size="large"
+                  sx={{
+                    width: { xs: '90%', sm: 'fit-content' },
+                    background: 'rgba(14,165,233,0.08)',
+                    color: '#0f172a',
+                    px: 5,
+                    py: 1.8,
+                    borderRadius: '14px',
+                    fontWeight: 500,
+                    textTransform: 'none',
+                    fontSize: '0.95rem',
+                    border: '1px solid rgba(14,165,233,0.25)',
+                    '&:hover': { background: 'rgba(14,165,233,0.15)' }
+                  }}
+                >
+                  Talk to Team
+                </Button>
+              </Stack>
+            </motion.div>
+          </motion.div>
+
+          {/* Stats Bar */}
+          <motion.div variants={fadeSlide(0.05)} className='hidden sm:block'>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: { xs: 2, md: 4 },
+                mb: 4,
+                flexWrap: 'wrap',
+              }}
+            >
+              {/*
+                { label: '10K+ Residents', icon: <InsightsIcon sx={{ fontSize: 24, color: '#0ea5e9' }} /> },
+                { label: '2.5K Reviews', icon: <AwardIcon sx={{ fontSize: 24, color: '#6366f1' }} /> },
+                { label: 'Award 2025', icon: <EmojiEventsIcon sx={{ fontSize: 24, color: '#f59e0b' }} /> },
+              */}
+              { [
+                { label: '10K+ Residents', icon: <InsightsIcon sx={{ fontSize: 24, color: '#0ea5e9' }} /> },
+                { label: '2.5K Reviews', icon: <ReviewsIcon sx={{ fontSize: 24, color: '#6366f1' }} /> },
+                { label: 'Award 2025', icon: <EmojiEventsIcon sx={{ fontSize: 24, color: '#f59e0b' }} /> },
+              ].map((stat, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    px: 2,
+                    py: 1,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  {stat.icon}
+                  <Typography
+                    sx={{
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      color: '#1e293b',
+                    }}
+                  >
+                    {stat.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </motion.div>
+
+          {/* Service Cards Mosaic (centered) */}
+          <Box sx={{ position: 'relative', mx: 'auto', maxWidth: { xs: 400, sm: 600, md: 700, lg: 1000 } }}>
+            <Grid container spacing={2.2} justifyContent="center">
+              {serviceCards.map((c, i) => (
+                <Grid
+                  key={c.title}
+                  item
+                  xs={4} // 3 columns for extra small screens
+                  sm={4}
+                  md={4}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: { xs: 'center', sm: 'flex-start' },
+                    textAlign: { xs: 'center', sm: 'left' },
+                  }}
+                >
+                  <motion.div custom={i} variants={cardVariant} initial="hidden" animate="show" whileHover={{ y: -6 }}>
                     <Box
                       sx={{
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        borderRadius: '16px',
-                        p: { xs: 1.5, md: 2.5 },
-                        textAlign: 'center',
-                        backdropFilter: 'blur(15px)',
-                        border: '1px solid rgba(226, 232, 240, 0.6)',
-                        transition: 'all 0.4s ease',
-                        cursor: 'pointer',
-                        height: { xs: '90px', md: '120px' },
-                        width: { xs: '110px', md: '140px'},
+                        position: 'relative',
+                        p: { xs: 1.5, sm: 2.1 }, // Smaller padding for xs screens
+                        background: 'linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.75))',
+                        border: '1px solid rgba(15,23,42,0.08)',
+                        borderRadius: { xs: '12px', sm: '18px' }, // Smaller border radius for xs screens
+                        minHeight: { xs: 100, sm: 130 }, // Smaller height for xs screens
+                        height: { xs: 100, sm: 130 }, // Fixed smaller height for xs screens
+                        minWidth: { xs: 100, sm: 140 }, // Smaller width for xs screens
+                        width: { xs: 100, sm: 140 }, // Fixed smaller width for xs screens
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'relative',
+                        alignItems: { xs: 'center', sm: 'flex-start' }, // Center icon and text for xs screens
+                        justifyContent: { xs: 'center', sm: 'space-between' },
                         overflow: 'hidden',
+                        transition: 'all .4s cubic-bezier(.4,0,.2,1)',
+                        boxShadow: '0 4px 18px -2px rgba(0,0,0,0.08)',
                         '&:hover': {
-                          transform: 'translateY(-8px)',
-                          boxShadow: '0 15px 40px rgba(0, 0, 0, 0.15)',
-                          background: 'rgba(255, 255, 255, 0.98)',
-                          '&::before': {
-                            opacity: 1,
-                          }
+                          boxShadow: '0 8px 26px -4px rgba(0,0,0,0.14)',
+                          borderColor: c.color + '55',
+                          cursor: 'pointer',
                         },
-                        '&::before': {
+                        '&::after': {
                           content: '""',
                           position: 'absolute',
                           top: 0,
                           left: 0,
-                          right: 0,
-                          height: '3px',
-                          background: `linear-gradient(135deg, ${service.color}, ${service.color}99)`,
+                          width: '100%',
+                          height: '100%',
+                          background: `linear-gradient(140deg, ${c.color}18, transparent 65%)`,
                           opacity: 0,
-                          transition: 'opacity 0.3s ease',
-                        }
-                      }}
-                    >
-                      <Box sx={{ mb: 1 }}>
-                        {service.icon}
+                          transition: 'opacity .5s',
+                        },
+                        '&:hover::after': { opacity: 1 },
+                      }}>
+                        <Box
+                          sx={{
+                            width: { xs: 30, sm: 40 }, // Smaller icon size for xs screens
+                            height: { xs: 30, sm: 40 }, // Smaller icon size for xs screens
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: `linear-gradient(135deg, ${c.color}25, ${c.color}08)`,
+                            color: c.color,
+                            mb: 1,
+                            boxShadow: `0 0 0 1px ${c.color}40, inset 0 0 0 1px ${c.color}25`,
+                          }}
+                        >
+                          {c.icon}
+                        </Box>
+                        <Typography
+                          sx={{
+                            fontWeight: 600,
+                            fontSize: { xs: '0.75rem', sm: '0.9rem' }, // Smaller font size for xs screens
+                            letterSpacing: 0.3,
+                            color: '#0f172a',
+                          }}
+                        >
+                          {c.title}
+                        </Typography>
                       </Box>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          fontWeight: '700',
-                          color: service.color,
-                          fontSize: { xs: '0.70rem', md: '0.85rem' },
-                          lineHeight: 1.3,
-                          textAlign: 'center',
-                        }}
-                      >
-                        {service.title}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                </Grid>
-              ))}
+                    </motion.div>
+                  </Grid>
+                ))}
             </Grid>
-
-
-            {/* Enhanced CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                variant="contained"
-                size="large"
-                onClick={() => navigate('/auth')}
-                sx={{
-                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 60%, #dc2626 100%)',
-                  color: 'white',
-                  px: { xs: 4, md: 6 },
-                  py: { xs: 1.5, md: 2 },
-                  borderRadius: '30px',
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  fontWeight: '700',
-                  textTransform: 'none',
-                  boxShadow: '0 10px 30px rgba(249, 115, 22, 0.4)',
-                  transition: 'all 0.4s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '&:hover': {
-                    background: 'linear-gradient(135deg, #ea580c 0%, #dc2626 60%, #b91c1c 100%)',
-                    transform: 'translateY(-3px)',
-                    boxShadow: '0 15px 45px rgba(249, 115, 22, 0.5)',
-                  },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: '-100%',
-                    width: '100%',
-                    height: '100%',
-                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                    transition: 'left 0.6s ease',
-                  },
-                  '&:hover::before': {
-                    left: '100%',
-                  },
-                }}
-              >
-                Get Started Now
-              </Button>
-            </motion.div>
           </Box>
-        </motion.div>
+        </Box>
       </Container>
     </Box>
   );

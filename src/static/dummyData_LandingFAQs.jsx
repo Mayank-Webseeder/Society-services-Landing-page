@@ -26,11 +26,16 @@ const dummyFAQs = [
   },
   {
     id: 6,
+    question: "Can VELRA be customized for our society's unique needs?",
+    answer: "Yes, VELRA offers customizable modules and features to suit the unique requirements of each society. Our team works closely with you to tailor the platform for your specific processes, workflows, and preferences."
+  },
+  {
+    id: 7,
     question: "Is VELRA a verified platform?",
     answer: "Absolutely! VELRA is a registered company with proper licensing and certifications. All our vendor partners go through thorough background verification, and we maintain strict quality standards. We're also compliant with data protection regulations and maintain high security standards."
   },
   {
-    id: 7,
+    id: 8,
     question: "Where is my data housed? Is it secure?",
     answer: "Your data is securely stored on cloud servers with enterprise-grade security measures including encryption, regular backups, and compliance with Indian data protection laws. We use AWS infrastructure with multi-layer security protocols and never share your data with third parties without consent."
   }

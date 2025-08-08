@@ -340,14 +340,21 @@ const SocietyFeaturesSection = () => {
                       onClick={() => handleDropdownClick(feature.id)}
                     >
                       <Box
-                        sx={{ px: { xs: 1.6, md: 2 }, py: { xs: 1.1, md: 2 } }}
+                        sx={{ 
+                          display:'flex',
+                          flexDirection: 'column' ,
+                          justifyContent: 'center',
+                          px: { xs: 1.6, md: 2.5 }, 
+                          py: { xs: 1.1, md: 2.5 },
+                          // border: '2px solid green',
+                        }} 
                       >
                         <Box
                           sx={{
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "flex-start",
-                            mb: { xs: 1, md: 1.5 },
+                            // border: '2px solid red',
                           }}
                         >
                           <Box

@@ -10,7 +10,6 @@ import dummyFAQs from '../../static/dummyData_LandingFAQs';
 
 
 const LandingFAQ = () => {
-    
   const [expandedId, setExpandedId] = useState(null);
 
   const handleToggleExpand = (id) => {
@@ -62,7 +61,7 @@ const LandingFAQ = () => {
         }}
       />
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -131,14 +130,13 @@ const LandingFAQ = () => {
           </Box>
         </motion.div>
 
-
         {/* FAQ List */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <Box sx={{ maxWidth: { xs: '100%', sm: '80%', xl: '1000px' }, mx: 'auto' }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' }, columnGap: { xs: 0, lg: 3, xl: 7 }, maxWidth: { xs: '100%', sm: '90%', md: '80%', lg: '90%', xl: '85%' }, mx: 'auto' }}>
             <AnimatePresence>
               {dummyFAQs.map((faq, index) => (
                 <motion.div
@@ -206,7 +204,6 @@ const LandingFAQ = () => {
                         <Typography 
                           variant="h6" 
                           sx={{ 
-                            // border: '2px solid red',
                             fontWeight: '700', 
                             color: expandedId === faq.id ? '#3b82f6' : '#0f172a',
                             fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
@@ -248,7 +245,7 @@ const LandingFAQ = () => {
                       </motion.div>
                     </Box>
                     
-                    <Collapse in={expandedId === faq.id} timeout={400}>
+                    <Collapse in={expandedId === faq.id} timeout={300}>
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: expandedId === faq.id ? 1 : 0 }}
