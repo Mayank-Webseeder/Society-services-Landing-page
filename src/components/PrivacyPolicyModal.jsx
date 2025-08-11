@@ -170,7 +170,7 @@ const PrivacyPolicyModal = ({ open, onClose }) => {
                           height: '6px',
                           backgroundColor: '#3b82f6',
                           borderRadius: '50%',
-                          mt: 1,
+                          mt: 2,
                           mr: 2,
                           flexShrink: 0,
                         }}
@@ -218,7 +218,7 @@ const PrivacyPolicyModal = ({ open, onClose }) => {
                           height: '4px',
                           backgroundColor: '#8b5cf6',
                           borderRadius: '50%',
-                          mt: 1,
+                          mt: 2,
                           mr: 2,
                           flexShrink: 0,
                         }}
