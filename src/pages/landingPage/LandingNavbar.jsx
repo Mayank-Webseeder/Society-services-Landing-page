@@ -93,16 +93,16 @@ const LandingNavbar = ({ refs }) => {
             }}
             onClick={() => navigate('/')}
           >
-            <img
+            <Box
+              component="img"
               src={faviconFinal}
               alt="Logo"
-              style={{
-                // border: '2px solid red',
-                width: 56,
-                height: 56,
-                borderRadius: 12,
+              sx={{
+                width: { xs: 40, sm: 44, md: 56, lg: 54 },
+                height: { xs: 40, sm: 44, md: 56, lg: 54 },
+                borderRadius: 2,
                 objectFit: 'cover',
-                marginRight: 12,
+                mr: 1.5,
               }}
             />
           </Box>
