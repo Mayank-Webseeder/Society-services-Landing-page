@@ -97,6 +97,7 @@ const LandingNavbar = ({ refs }) => {
               src={faviconFinal}
               alt="Logo"
               style={{
+                // border: '2px solid red',
                 width: 56,
                 height: 56,
                 borderRadius: 12,

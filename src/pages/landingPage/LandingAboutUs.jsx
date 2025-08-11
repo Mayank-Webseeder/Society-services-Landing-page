@@ -114,7 +114,7 @@ const LandingAboutUs = () => {
         >
           <Box
             sx={{
-              width: "85%",
+              width: { xs: '90%', sm: '85%' },
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
@@ -171,27 +171,40 @@ const LandingAboutUs = () => {
             <Box
               sx={{
                 flex: 1,
+                order: { xs: -1, md: 2 },
+                // display: { xs: 'none', sm: 'block' },
                 position: { xs: "static", lg: "sticky" },
                 top: 80,
                 mx: "auto",
               }}
             >
               <motion.div
+              className="flex justify-center"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <img
-                  src={aboutUs}
-                  alt="About Us Preview"
-                  style={{
-                    width: "100%",
-                    height: "400px", // Increased height
-                    objectFit: "cover",
+                <Box
+                  sx={{
+                    width: { xs: '90%', sm: '100%' },
+                    height: { xs: '300px', sm: '440px' }, // Responsive height
                     borderRadius: "16px",
+                    overflow: "hidden",
                     border: "1px solid #e2e8f0",
                   }}
-                />
+                >
+                  <img
+                    src={aboutUs}
+                    alt="About Us Preview"
+                    style={{
+                      width: { xs: '90%', sm: '100%' },
+                      height: { xs: '300px', sm: '400px' }, // Responsive height
+                      objectFit: "cover",
+                      borderRadius: "16px",
+                      border: "1px solid #e2e8f0",
+                    }}
+                  />
+                </Box>
               </motion.div>
             </Box>
           </Box>

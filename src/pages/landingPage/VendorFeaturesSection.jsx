@@ -478,21 +478,32 @@ const VendorFeaturesSection = () => {
               }}
             >
               <motion.div
+                className="flex justify-center"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <img
-                  src={vendorImg}
-                  alt="Vendor Management Dashboard Preview"
-                  style={{
-                    width: "100%",
-                    height: "440px", // Increased height
-                    objectFit: "cover",
+                <Box
+                  sx={{
+                    width: { xs: '90%', sm: '100%' },
+                    height: { xs: '300px', sm: '440px' }, // Responsive height
                     borderRadius: "16px",
+                    overflow: "hidden",
                     border: "1px solid #e2e8f0",
                   }}
-                />
+                >
+                  <img
+                    src={vendorImg}
+                    alt="Vendor Management Dashboard Preview"
+                    style={{
+                      width: "100%",
+                      height: "440px", // Increased height
+                      objectFit: "cover",
+                      borderRadius: "16px",
+                      border: "1px solid #e2e8f0",
+                    }}
+                  />
+                </Box>
               </motion.div>
             </Box>
           </Box>
