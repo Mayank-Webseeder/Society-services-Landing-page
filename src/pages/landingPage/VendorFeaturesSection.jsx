@@ -10,6 +10,8 @@ import {
   ArrowForward as ArrowForwardIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
+// import  from '../../assets/vendorImg.jpg';
+import vendorImg from "../../assets/vendorImg.jpeg";
 
 
 const VendorFeaturesSection = () => {
@@ -473,7 +475,6 @@ const VendorFeaturesSection = () => {
                 position: { xs: "static", lg: "sticky" },
                 top: 80,
                 mx: "auto",
-                // mt: { xs: 2, lg: 0 }
               }}
             >
               <motion.div
@@ -481,115 +482,17 @@ const VendorFeaturesSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    // border: '2px solid red',
-                    minWidth: "300px",
-                    height: { xs: "250px", sm: "320px", md: "450px" },
-                    background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-                    borderRadius: { xs: "12px", md: "16px" },
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: '1px solid #e2e8f0',
-                    position: "relative",
-                    overflow: "hidden",
+                <img
+                  src={vendorImg}
+                  alt="Vendor Management Dashboard Preview"
+                  style={{
+                    width: "100%",
+                    height: "440px", // Increased height
+                    objectFit: "cover",
+                    borderRadius: "16px",
+                    border: "1px solid #e2e8f0",
                   }}
-                >
-                  {/* Background Pattern */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundImage:
-                        "radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                    }}
-                  />
-
-                  {/* Content */}
-                  <Box
-                    sx={{ textAlign: "center", zIndex: 1, p: { xs: 2, md: 3 } }}
-                  >
-                    <WorkIcon
-                      sx={{
-                        fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-                        color: "rgba(255,255,255,0.9)",
-                        mb: { xs: 1.5, md: 2 },
-                      }}
-                    />
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        color: "white",
-                        fontWeight: "700",
-                        mb: { xs: 1, md: 1.5 },
-                        fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      Vendor Management
-                      <br />
-                      Dashboard Preview
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "rgba(255,255,255,0.8)",
-                        fontSize: { xs: "0.85rem", md: "0.95rem" },
-                        lineHeight: 1.5,
-                        px: { xs: 1, md: 0 },
-                      }}
-                    >
-                      Advanced tools for business
-                      <br />
-                      growth and efficiency
-                    </Typography>
-                  </Box>
-
-                  {/* Floating Elements - Hide on mobile for performance */}
-                  <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                    <motion.div
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      style={{ position: "absolute", top: "20%", left: "20%" }}
-                    >
-                      <Box
-                        sx={{
-                          width: { sm: 40, md: 50 },
-                          height: { sm: 40, md: 50 },
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(255,255,255,0.1)",
-                          backdropFilter: "blur(10px)",
-                        }}
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      style={{
-                        position: "absolute",
-                        bottom: "25%",
-                        right: "15%",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: { sm: 28, md: 35 },
-                          height: { sm: 28, md: 35 },
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(255,255,255,0.08)",
-                          backdropFilter: "blur(10px)",
-                        }}
-                      />
-                    </motion.div>
-                  </Box>
-                </Paper>
+                />
               </motion.div>
             </Box>
           </Box>

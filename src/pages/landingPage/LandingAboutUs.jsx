@@ -1,6 +1,7 @@
 import { Box, Container, Typography, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import { Verified as VerifiedIcon } from '@mui/icons-material';
+import aboutUs from "../../assets/aboutUs.jpg";
 
 
 const LandingAboutUs = () => {
@@ -104,19 +105,21 @@ const LandingAboutUs = () => {
       </motion.div>
 
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
         <motion.div
+        className="flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <Box
             sx={{
-              width: "100%",
+              width: "85%",
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
               gap: { xs: 4, md: 6 },
+              // border: '2px solid red'
             }}
           >
             {/* Left Side - Content */}
@@ -168,118 +171,27 @@ const LandingAboutUs = () => {
             <Box
               sx={{
                 flex: 1,
-                display: { xs: "none", md: "block" },
-                visibility: { xs: "hidden", md: "visible" },
+                position: { xs: "static", lg: "sticky" },
+                top: 80,
+                mx: "auto",
               }}
             >
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <Box sx={{ position: "relative" }}>
-                  {/* Top Large Image */}
-                  <Box
-                    sx={{
-                      mb: 2,
-                      borderRadius: "16px",
-                      overflow: "hidden",
-                      height: { xs: "160px", md: "200px" },
-                      backgroundColor: "#e2e8f0",
-                      backgroundImage:
-                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      position: "relative",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "white",
-                        fontWeight: "600",
-                        fontSize: { xs: "0.9rem", md: "1.1rem" },
-                        textAlign: "center",
-                      }}
-                    >
-                      Society Management Dashboard
-                    </Typography>
-                  </Box>
-
-                  <Grid container spacing={2}>
-                    {/* Bottom Left Image */}
-                    <Grid item xs={12} sm={6}>
-                      <Box
-                        sx={{
-                          borderRadius: "16px",
-                          overflow: "hidden",
-                          height: { xs: "100px", md: "130px" },
-                          backgroundColor: "#f1f5f9",
-                          backgroundImage:
-                            "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            color: "white",
-                            fontWeight: "600",
-                            fontSize: { xs: "0.7rem", md: "0.9rem" },
-                            textAlign: "center",
-                            px: 1,
-                          }}
-                        >
-                          Service Providers
-                        </Typography>
-                      </Box>
-                    </Grid>
-
-                    {/* Bottom Right - Stats */}
-                    <Grid item xs={12} sm={6}>
-                      <Box
-                        sx={{
-                          borderRadius: "16px",
-                          overflow: "hidden",
-                          height: { xs: "100px", md: "130px" },
-                          backgroundColor: "#f8fafc",
-                          border: "2px solid #e2e8f0",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          p: 2,
-                        }}
-                      >
-                        <Typography
-                          variant="h2"
-                          sx={{
-                            fontWeight: "700",
-                            color: "#1e293b",
-                            fontSize: { xs: "1.5rem", md: "2.2rem" },
-                            lineHeight: 1,
-                            mb: 1,
-                          }}
-                        >
-                          100+
-                        </Typography>
-                        <Typography
-                          variant="h5"
-                          sx={{
-                            fontWeight: "600",
-                            color: "#64748b",
-                            fontSize: { xs: "0.8rem", md: "1rem" },
-                            textAlign: "center",
-                            lineHeight: 1.2,
-                          }}
-                        >
-                          Societies Served
-                        </Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
+                <img
+                  src={aboutUs}
+                  alt="About Us Preview"
+                  style={{
+                    width: "100%",
+                    height: "400px", // Increased height
+                    objectFit: "cover",
+                    borderRadius: "16px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                />
               </motion.div>
             </Box>
           </Box>

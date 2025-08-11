@@ -57,7 +57,7 @@ const LandingIntro = () => {
         minHeight: { xs: 'auto', md: '80vh' },
         display: 'flex',
         alignItems: 'center',
-        py: { xs: 6, md: 10 },
+        py: { xs: 6, md: 6 },
         background: 'linear-gradient(135deg,#f8fafc 0%,#ffffff 55%,#eef2f7 100%)'
       }}
     >
@@ -97,6 +97,27 @@ const LandingIntro = () => {
 
             {/* Heading */}
             <motion.div variants={fadeSlide(0.1)}>
+              <Typography
+                component="h1"
+                sx={{
+                  fontSize: { xs: '2.5rem', sm: '3.2rem', md: '3.8rem', lg: '4.2rem' },
+                  fontWeight: 900,
+                  lineHeight: 1.08,
+                  color: 'transparent',
+                  background: 'linear-gradient(90deg, #1e293b 0%, #3b82f6 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  letterSpacing: '-0.01em',
+                  mb: { xs: 1, sm: 1.5 },
+                  textAlign: 'center',
+                  fontFamily: 'Inter, Roboto, sans-serif',
+                  textTransform: 'none',
+                }}
+              >
+                VELRA
+              </Typography>
+            </motion.div>
+            <motion.div variants={fadeSlide(0.18)}>
               <Typography
                 component="h1"
                 sx={{

@@ -10,10 +10,10 @@ import {
   ArrowForward as ArrowForwardIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
+import societyImg from '../../assets/societyImg.jpg';
 
 
 const SocietyFeaturesSection = () => {
-
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const societyFeatures = [
@@ -83,8 +83,6 @@ const SocietyFeaturesSection = () => {
   const handleDropdownClick = (dropdownId) => {
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
-
-
 
   return (
     <Container
@@ -159,7 +157,6 @@ const SocietyFeaturesSection = () => {
           </Typography>
         </Box>
 
-
         {/* Layout Content */}
         <Box sx={{ maxWidth: { xs: '90%', sm: "80%", md: '95%', xl: "80%" }, mx: "auto" }}>
           <Box
@@ -177,7 +174,7 @@ const SocietyFeaturesSection = () => {
                 position: { xs: "static", lg: "sticky" },
                 top: 80,
                 mx: "auto",
-                // mt: { xs: 2, lg: 0 },
+                // border: '2px solid red',
               }}
             >
               <motion.div
@@ -185,114 +182,17 @@ const SocietyFeaturesSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    minWidth: "300px",
-                    height: { xs: "250px", sm: "320px", md: "450px" },
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    borderRadius: { xs: "12px", md: "16px" },
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
+                <img
+                  src={societyImg}
+                  alt="Society Management Dashboard Preview"
+                  style={{
+                    width: "100%",
+                    height: "440px", // Increased height
+                    objectFit: "cover",
+                    borderRadius: "16px",
                     border: "1px solid #e2e8f0",
-                    position: "relative",
-                    overflow: "hidden",
                   }}
-                >
-                  {/* Background Pattern */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundImage:
-                        "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                    }}
-                  />
-
-                  {/* Content */}
-                  <Box
-                    sx={{ textAlign: "center", zIndex: 1, p: { xs: 2, md: 3 } }}
-                  >
-                    <BusinessIcon
-                      sx={{
-                        fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-                        color: "rgba(255,255,255,0.9)",
-                        mb: { xs: 1.5, md: 2 },
-                      }}
-                    />
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        color: "white",
-                        fontWeight: "700",
-                        mb: { xs: 1, md: 1.5 },
-                        fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      Society Management
-                      <br />
-                      Dashboard Preview
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "rgba(255,255,255,0.8)",
-                        fontSize: { xs: "0.85rem", md: "0.95rem" },
-                        lineHeight: 1.5,
-                        px: { xs: 1, md: 0 },
-                      }}
-                    >
-                      Interactive demos and detailed feature
-                      <br />
-                      walkthroughs coming soon
-                    </Typography>
-                  </Box>
-
-                  {/* Floating Elements - Hide on mobile for performance */}
-                  <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                    <motion.div
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      style={{ position: "absolute", top: "20%", right: "20%" }}
-                    >
-                      <Box
-                        sx={{
-                          width: { sm: 40, md: 50 },
-                          height: { sm: 40, md: 50 },
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(255,255,255,0.1)",
-                          backdropFilter: "blur(10px)",
-                        }}
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      style={{
-                        position: "absolute",
-                        bottom: "25%",
-                        left: "15%",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: { sm: 28, md: 35 },
-                          height: { sm: 28, md: 35 },
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(255,255,255,0.08)",
-                          backdropFilter: "blur(10px)",
-                        }}
-                      />
-                    </motion.div>
-                  </Box>
-                </Paper>
+                />
               </motion.div>
             </Box>
 

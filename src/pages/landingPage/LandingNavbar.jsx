@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
+import faviconFinal from '../../../public/faviconFinal.png';
 
 
 const VENDOR_URL = import.meta.env.VITE_VENDOR_URL;
@@ -82,40 +83,28 @@ const LandingNavbar = ({ refs }) => {
           }}
         >
           {/* Enhanced Logo */}
-          <Typography
-            variant="h5"
-            // onClick={() => navigate('/')}
+          <Box
             sx={{
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 60%, #8b5cf6 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontSize: { xs: '1.3rem', md: '2.1rem' },
-              fontFamily: 'Roboto, sans-serif',
-              letterSpacing: '0.02em',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               cursor: 'pointer',
-              position: 'relative',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.05)',
-              },
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                bottom: { xs: '-2px', md: '-3px' },
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '80%',
-                height: { xs: '2px', md: '3px' },
-                background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)',
-                borderRadius: '2px',
-                opacity: 0.8,
-                boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)',
-              },
+              gap: 1,
             }}
+            onClick={() => navigate('/')}
           >
-            VELRA
-          </Typography>
+            <img
+              src={faviconFinal}
+              alt="Logo"
+              style={{
+                width: 56,
+                height: 56,
+                borderRadius: 12,
+                objectFit: 'cover',
+                marginRight: 12,
+              }}
+            />
+          </Box>
 
 
           {/* Enhanced Navigation Items - Hidden on mobile */}
