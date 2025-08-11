@@ -30,7 +30,7 @@ const TermsModal = ({ open, onClose }) => {
           maxHeight: '92vh',
           overflowY: 'auto',
           border: '1px solid rgba(226, 232, 240, 0.8)',
-          position: 'relative',
+        //   position: 'relative',
           '&::-webkit-scrollbar': {
             display: 'none',
           },
@@ -43,7 +43,7 @@ const TermsModal = ({ open, onClose }) => {
           sx={{ 
             background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
             borderRadius: '20px 20px 0 0',
-            p: { xs: 3, md: 4 },
+            p: { xs: 3, md: 3 },
             position: 'sticky',
             top: 0,
             zIndex: 10,

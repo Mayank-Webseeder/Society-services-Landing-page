@@ -43,7 +43,7 @@ const PrivacyPolicyModal = ({ open, onClose }) => {
           sx={{ 
             background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
             borderRadius: '20px 20px 0 0',
-            p: { xs: 3, md: 4 },
+            p: { xs: 3, md: 3 },
             position: 'sticky',
             top: 0,
             zIndex: 10,
