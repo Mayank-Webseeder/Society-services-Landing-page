@@ -187,7 +187,7 @@ const LandingAboutUs = () => {
                 <Box
                   sx={{
                     width: { xs: '90%', sm: '100%' },
-                    height: { xs: '300px', sm: '440px' }, // Responsive height
+                    height: { xs: '300px', sm: '350px' }, // Responsive height
                     borderRadius: "16px",
                     overflow: "hidden",
                     border: "1px solid #e2e8f0",
