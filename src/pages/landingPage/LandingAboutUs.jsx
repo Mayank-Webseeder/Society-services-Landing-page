@@ -59,7 +59,7 @@ const LandingAboutUs = () => {
               textAlign: 'center',
             }}
           >
-            About VELRA
+            About Us
           </Typography>
           <Box
             sx={{
@@ -107,27 +107,27 @@ const LandingAboutUs = () => {
 
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
         <motion.div
-        className="flex justify-center"
+          className="flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <Box
             sx={{
-              width: { xs: '90%', sm: '85%' },
+              width: { xs: '100%', sm: '88%' },
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
               gap: { xs: 4, md: 6 },
-              // border: '2px solid red'
             }}
           >
             {/* Left Side - Content */}
-            <Box sx={{ flex: 1.2, pr: { md: 4 }, px: { xs: 1, sm: 0 } }}>
+            <Box sx={{ flex: 1.2, pr: { md: 0 }, px: { xs: 1, sm: 0 } }}>
               {/* Description Content */}
               <Typography
                 variant="body1"
                 sx={{
+                  textAlign: { xs: 'center', sm: 'left' },
                   color: "#475569",
                   fontSize: { xs: "0.85rem", md: "1rem" },
                   lineHeight: 1.7,
@@ -135,7 +135,7 @@ const LandingAboutUs = () => {
                   fontWeight: '400',
                 }}
               >
-                At VELRA, we specialize in delivering seamless Society and
+                At My Society Needs, we specialize in delivering seamless Society and
                 Vendor Management solutions tailored to the unique needs of
                 residential societies and service providers. With services that
                 span across facility management, vendor coordination, and
@@ -149,13 +149,14 @@ const LandingAboutUs = () => {
               <Typography
                 variant="body1"
                 sx={{
+                  textAlign: { xs: 'center', sm: 'left' },
                   color: "#475569",
                   fontSize: { xs: "0.85rem", md: "1rem" },
                   lineHeight: 1.7,
                   fontWeight: '400',
                 }}
               >
-                Our commitment goes beyond technology. At VELRA, we strive to
+                Our commitment goes beyond technology. At My Needs Society, we strive to
                 create management experiences that leave a lasting impression.
                 Whether it's residential society management, vendor
                 coordination, or a comprehensive service marketplace, we focus
@@ -171,15 +172,16 @@ const LandingAboutUs = () => {
             <Box
               sx={{
                 flex: 1,
+                // border: '2px solid red',
                 order: { xs: -1, md: 2 },
                 // display: { xs: 'none', sm: 'block' },
-                position: { xs: "static", lg: "sticky" },
-                top: 80,
+                // position: { xs: "static", lg: "sticky" },
+                // top: 80,
                 mx: "auto",
               }}
             >
               <motion.div
-              className="flex justify-center"
+                className="flex justify-center"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -187,7 +189,7 @@ const LandingAboutUs = () => {
                 <Box
                   sx={{
                     width: { xs: '90%', sm: '100%' },
-                    height: { xs: '300px', sm: '350px' }, // Responsive height
+                    height: { xs: '300px', sm: '340px' }, // Responsive height
                     borderRadius: "16px",
                     overflow: "hidden",
                     border: "1px solid #e2e8f0",
@@ -197,11 +199,10 @@ const LandingAboutUs = () => {
                     src={aboutUs}
                     alt="About Us Preview"
                     style={{
-                      width: { xs: '90%', sm: '100%' },
-                      height: { xs: '300px', sm: '400px' }, // Responsive height
+                      width: "100%",
+                      height: "100%",
                       objectFit: "cover",
                       borderRadius: "16px",
-                      border: "1px solid #e2e8f0",
                     }}
                   />
                 </Box>

@@ -102,7 +102,7 @@ const LandingNavbar = ({ refs }) => {
                 height: { xs: 40, sm: 44, md: 56, lg: 54 },
                 borderRadius: 2,
                 objectFit: 'cover',
-                mr: 1.5,
+                mr: 0,
               }}
             />
           </Box>

@@ -107,14 +107,14 @@ const LandingIntro = () => {
                 <Typography
                   component="h1"
                   sx={{
-                    fontSize: { xs: '3.2rem', sm: '4.2rem', md: '4.8rem', lg: '5.2rem' },
+                    fontSize: { xs: '2.7rem', sm: '4rem', md: '4.4rem', lg: '4.7rem' },
                     fontWeight: 900,
                     lineHeight: { xs: 1.1, sm: 1.2 },
                     letterSpacing: '-0.02em',
                     background: 'linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    mb: { xs: 1, sm: 1.5 },
+                    mb: { xs: 0.5, sm: 3 },
                     textTransform: 'uppercase',
                     fontFamily: 'Inter, sans-serif',
                     textAlign: 'center',
@@ -123,12 +123,12 @@ const LandingIntro = () => {
                     paddingBottom: '0.5rem',
                   }}
                 >
-                  VELRA
+                  My Society Needs
                 </Typography>
                 <Typography
                   component="h2"
                   sx={{
-                    fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.2rem', lg: '2.6rem' },
+                    fontSize: { xs: '1.2rem', sm: '1.8rem', md: '2.2rem', lg: '2.6rem' },
                     fontWeight: 700,
                     lineHeight: { xs: 1.5, sm: 1.4 },
                     color: 'transparent',
@@ -143,32 +143,33 @@ const LandingIntro = () => {
                     letterSpacing: '0.02em',
                   }}
                 >
-                  A Single Operating Platform for Your Community Services
+                  A Single Operating Platform for<br/> Your Community Services
                 </Typography>
               </Box>
             </motion.div>
 
             {/* Subheading */}
-            <motion.div variants={fadeSlide(0.18)}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: '0.85rem', sm: '1rem', md: '1.05rem' },
-                  lineHeight: 1.75,
-                  color: '#475569',
-                  maxWidth: { xs: 320, sm: 720 },
-                  mx: 'auto',
+                      <motion.div variants={fadeSlide(0.18)}>
+                      <Typography
+                      variant="body1"
+                      sx={{
+                        display: { xs: 'none', sm: 'block' },
+                        fontSize: { xs: '0.85rem', sm: '1rem', md: '1.02rem' },
+                        lineHeight: 1.75,
+                        color: '#94a3b8', // More faded than #64748b
+                      maxWidth: { xs: 320, sm: 650 },
+                      mx: 'auto',
                   // border: '2px solid red',
                   mb: { xs: 4, sm: 7 },
                 }}
               >
                 {/* Shorter text for mobile screens */}
                 <span className="hidden sm:inline">
-                  Velra consolidates maintenance, safety, procurement and resident workflows—delivering clearer accountability, faster resolution times and measurable cost efficiency.
+                  My Society Needs consolidates maintenance, procurement and resident workflows—delivering clearer accountability, faster resolution times and measurable cost efficiency.
                 </span>
-                <span className="sm:hidden">
-                  Velra simplifies community management with unified workflows and measurable efficiency.
-                </span>
+                {/* <span className="sm:hidden">
+                  My Society Needs simplifies community management with unified workflows and measurable efficiency.
+                </span> */}
               </Typography>
             </motion.div>
 

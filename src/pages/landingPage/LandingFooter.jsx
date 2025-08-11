@@ -77,7 +77,7 @@ const LandingFooter = () => {
           
         >
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-12 gap-3 sm:gap-5 justify-between">
-            {/* VELRA Brand Section - Hidden on mobile */}
+            {/* Brand Section - Hidden on mobile */}
             <div className="hidden xl:block xl:col-span-4">
               <motion.div variants={itemVariants} className='max-w-lg'>
                 <Typography
@@ -89,7 +89,7 @@ const LandingFooter = () => {
                     mb: { xs: 1, md: 2 },
                   }}
                 >
-                  VELRA
+                  My Society Needs
                 </Typography>
                 <Typography
                   variant="body1"
@@ -311,7 +311,7 @@ const LandingFooter = () => {
                   fontSize: { xs: '0.8rem', md: '0.9rem' },
                 }}
               >
-                © 2025 VELRA. All rights reserved.
+                © 2025 My Society Needs. All rights reserved.
               </Typography>
             </Box>
           </motion.div>
