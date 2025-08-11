@@ -97,42 +97,55 @@ const LandingIntro = () => {
 
             {/* Heading */}
             <motion.div variants={fadeSlide(0.1)}>
-              <Typography
-                component="h1"
+              <Box
                 sx={{
-                  fontSize: { xs: '2.5rem', sm: '3.2rem', md: '3.8rem', lg: '4.2rem' },
-                  fontWeight: 900,
-                  lineHeight: 1.08,
-                  color: 'transparent',
-                  background: 'linear-gradient(90deg, #1e293b 0%, #3b82f6 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  letterSpacing: '-0.01em',
-                  mb: { xs: 1, sm: 1.5 },
                   textAlign: 'center',
-                  fontFamily: 'Inter, Roboto, sans-serif',
-                  textTransform: 'none',
+                  mb: { xs: 3, sm: 4 },
+                  px: { xs: 2, sm: 0 },
                 }}
               >
-                VELRA
-              </Typography>
-            </motion.div>
-            <motion.div variants={fadeSlide(0.18)}>
-              <Typography
-                component="h1"
-                sx={{
-                  fontSize: { xs: '1.8rem', sm: '2.8rem', md: '3.2rem', lg: '3.5rem' },
-                  fontWeight: 800,
-                  lineHeight: 1.2,
-                  letterSpacing: '-0.02em',
-                  background: 'linear-gradient(90deg, #0ea5e9 0%, #6366f1 50%, #0f172a 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  mb: { xs: 1.5, sm: 2.5 },
-                }}
-              >
-                A Single Operating Platform for<br /> Your Community Services
-              </Typography>
+                <Typography
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: '3.2rem', sm: '4.2rem', md: '4.8rem', lg: '5.2rem' },
+                    fontWeight: 900,
+                    lineHeight: { xs: 1.1, sm: 1.2 },
+                    letterSpacing: '-0.02em',
+                    background: 'linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    mb: { xs: 1, sm: 1.5 },
+                    textTransform: 'uppercase',
+                    fontFamily: 'Inter, sans-serif',
+                    textAlign: 'center',
+                    textShadow: '0 4px 16px rgba(59, 130, 246, 0.4)',
+                    // borderBottom: '2px solid #3b82f6',
+                    paddingBottom: '0.5rem',
+                  }}
+                >
+                  VELRA
+                </Typography>
+                <Typography
+                  component="h2"
+                  sx={{
+                    fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.2rem', lg: '2.6rem' },
+                    fontWeight: 700,
+                    lineHeight: { xs: 1.5, sm: 1.4 },
+                    color: 'transparent',
+                    background: 'linear-gradient(90deg, #64748b 0%, #3b82f6 50%, #0ea5e9 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    maxWidth: { xs: '95%', sm: '80%', md: '70%' },
+                    mx: 'auto',
+                    fontFamily: 'Roboto, sans-serif',
+                    textAlign: 'center',
+                    textShadow: '0 3px 12px rgba(59, 130, 246, 0.2)',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  A Single Operating Platform for Your Community Services
+                </Typography>
+              </Box>
             </motion.div>
 
             {/* Subheading */}
@@ -140,7 +153,7 @@ const LandingIntro = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' },
+                  fontSize: { xs: '0.85rem', sm: '1rem', md: '1.05rem' },
                   lineHeight: 1.75,
                   color: '#475569',
                   maxWidth: { xs: 320, sm: 720 },
