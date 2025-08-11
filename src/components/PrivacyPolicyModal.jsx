@@ -30,7 +30,7 @@ const PrivacyPolicyModal = ({ open, onClose }) => {
           maxHeight: '92vh',
           overflowY: 'auto',
           border: '1px solid rgba(226, 232, 240, 0.8)',
-          position: 'relative',
+        //   position: 'relative',
           '&::-webkit-scrollbar': {
             display: 'none',
           },
