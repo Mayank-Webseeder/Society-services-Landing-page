@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
-import faviconFinal from '../../../public/faviconFinal.png';
+import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
+import faviconFinal from '/faviconFinal.png';
 
 
 const VENDOR_URL = import.meta.env.VITE_VENDOR_URL;
+const SOCIETY_URL = import.meta.env.VITE_SOCIETY_URL;
 
 
 const LandingNavbar = ({ refs }) => {
@@ -177,7 +178,7 @@ const LandingNavbar = ({ refs }) => {
             {/* Society login */}
             <Button
               variant="outlined"
-              onClick={() => navigate('/society-login')}
+              onClick={() => (window.location.href = SOCIETY_URL)}    // Use window.location.href for external URLs
               sx={{
                 borderColor: '#f97316',
                 color: '#f97316',
