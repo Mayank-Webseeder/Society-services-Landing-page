@@ -3,7 +3,7 @@ import ServicesShowcase from './ServicesShowcase';
 import PlatformFeatures from './PlatformFeatures';
 
 
-const LandingHero = ({ servicesRef, howItWorksRef }) => {
+const LandingHero = ({ servicesRef, howItWorksRef, refs }) => {
   
   return (
     <Box
@@ -14,7 +14,7 @@ const LandingHero = ({ servicesRef, howItWorksRef }) => {
     >
       {/* Services Showcase Section */}
       <div ref={servicesRef}>
-        <ServicesShowcase />
+        <ServicesShowcase refs={refs} />
       </div>
 
       {/* Add spacing between the two components */}

@@ -1,29 +1,30 @@
 import { Box, Container, Typography, Link, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import TermsModal from '../../components/TermsModal';
+import PrivacyPolicyModal from '../../components/PrivacyPolicyModal';
 
 
 const quickLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'How we work', href: '#' },
-  { label: 'Request Demo', href: '#' },
-  { label: 'Contact', href: '#' },
+  { label: 'Home', action: 'scrollToTop' },
+  { label: 'How we work', action: 'scrollToSection', ref: 'howItWorksRef' },
+  { label: 'Contact', action: 'scrollToSection', ref: 'contactRef' },
 ];
 
 const resources = [
-  { label: 'Blog', href: '#' },
-  { label: 'FAQs', href: '#' },
-  { label: 'Case Studies', href: '#' },
-  { label: 'Help Center', href: '#' },
+  { label: 'FAQs', action: 'scrollToSection', ref: 'faqsRef' },
+  { label: 'Reviews', action: 'scrollToSection', ref: 'testimonialsRef' },
+  { label: 'About Us', action: 'scrollToSection', ref: 'aboutUsRef' },
 ];
 
 const legalLinks = [
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms & Conditions', href: '#' },
+  { label: 'Privacy Policy', action: 'openModal', modal: 'privacy' },
+  { label: 'Terms & Conditions', action: 'openModal', modal: 'terms' },
 ];
 
 const socialLinks = [
@@ -34,7 +35,35 @@ const socialLinks = [
 ];
 
 
-const LandingFooter = () => {
+const LandingFooter = ({ refs }) => {
+  const [isTermsModalOpen, setTermsModalOpen] = useState(false);
+  const [isPrivacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
+
+  // Smooth scroll handler
+  const scrollToSection = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (link) => {
+    if (link.action === 'scrollToSection' && link.ref) {
+      scrollToSection(refs?.[link.ref]);
+    } else if (link.action === 'scrollToTop') {
+      scrollToTop();
+    } else if (link.action === 'openModal') {
+      if (link.modal === 'privacy') {
+        setPrivacyPolicyModalOpen(true);
+      } else if (link.modal === 'terms') {
+        setTermsModalOpen(true);
+      }
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -123,10 +152,16 @@ const LandingFooter = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {quickLinks.map((link) => (
-                    <Link
+                    <Box
                       key={link.label}
-                      href={link.href}
+                      component="button"
+                      onClick={() => handleLinkClick(link)}
                       sx={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        textAlign: 'left',
                         color: '#cbd5e1',
                         textDecoration: 'none',
                         fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
@@ -138,7 +173,7 @@ const LandingFooter = () => {
                       }}
                     >
                       {link.label}
-                    </Link>
+                    </Box>
                   ))}
                 </Box>
               </motion.div>
@@ -160,22 +195,47 @@ const LandingFooter = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {resources.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      sx={{
-                        color: '#64748b',
-                        textDecoration: 'none',
-                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
-                        transition: 'color 0.3s ease',
-                        py: { xs: 0.125, sm: 0.25, md: 0 },
-                        '&:hover': {
-                          color: '#3b82f6',
-                        },
-                      }}
-                    >
-                      {link.label}
-                    </Link>
+                    link.action ? (
+                      <Box
+                        key={link.label}
+                        component="button"
+                        onClick={() => handleLinkClick(link)}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                          color: '#64748b',
+                          textDecoration: 'none',
+                          fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
+                          transition: 'color 0.3s ease',
+                          py: { xs: 0.125, sm: 0.25, md: 0 },
+                          '&:hover': {
+                            color: '#3b82f6',
+                          },
+                        }}
+                      >
+                        {link.label}
+                      </Box>
+                    ) : (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        sx={{
+                          color: '#64748b',
+                          textDecoration: 'none',
+                          fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
+                          transition: 'color 0.3s ease',
+                          py: { xs: 0.125, sm: 0.25, md: 0 },
+                          '&:hover': {
+                            color: '#3b82f6',
+                          },
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    )
                   ))}
                 </Box>
               </motion.div>
@@ -197,10 +257,16 @@ const LandingFooter = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
                   {legalLinks.map((link) => (
-                    <Link
+                    <Box
                       key={link.label}
-                      href={link.href}
+                      component="button"
+                      onClick={() => handleLinkClick(link)}
                       sx={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        textAlign: 'left',
                         color: '#64748b',
                         textDecoration: 'none',
                         fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
@@ -212,7 +278,7 @@ const LandingFooter = () => {
                       }}
                     >
                       {link.label}
-                    </Link>
+                    </Box>
                   ))}
                 </Box>
               </motion.div>
@@ -317,6 +383,10 @@ const LandingFooter = () => {
           </motion.div>
         </motion.div>
       </Container>
+
+      {/* Modals */}
+      <TermsModal open={isTermsModalOpen} onClose={() => setTermsModalOpen(false)} />
+      <PrivacyPolicyModal open={isPrivacyPolicyModalOpen} onClose={() => setPrivacyPolicyModalOpen(false)} />
     </Box>
   );
 };

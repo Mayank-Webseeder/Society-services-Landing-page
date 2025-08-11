@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, Button, Tabs, Tab } from '@mui/material';
 import { motion } from 'framer-motion';
 import dummyOffers from '../../static/dummyData_ServicesOffered';
 
 
-const ServicesShowcase = () => {
+const ServicesShowcase = ({ refs }) => {
 
   const [selectedTab, setSelectedTab] = useState(0);
+
+  // Smooth scroll handler
+  const scrollToSection = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Group services into categories
   const serviceCategories = {
@@ -342,7 +349,7 @@ const ServicesShowcase = () => {
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         cursor: 'pointer',
                         height: { xs: '40px', sm: '48px', md: '55px' },
-                        boxShadow: '0 6px 20px rgba(59, 130, 246, 0.25)',
+                        boxShadow: '0 6px 20px rgba(59, 130,246, 0.25)',
                         position: 'relative',
                         overflow: 'hidden',
                         '&::before': {
@@ -421,57 +428,18 @@ const ServicesShowcase = () => {
               zIndex: 2,
             }}
           >
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                color: 'white',
-                px: { xs: 4, md: 5 },
-                py: { xs: 1.5, md: 1.5 },
-                borderRadius: '40px',
-                fontSize: { xs: '0.9rem', md: '1rem' },
-                fontWeight: '600',
-                textTransform: 'none',
-                boxShadow: '0 8px 24px rgba(249, 115, 22, 0.25)',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                position: 'relative',
-                overflow: 'hidden',
-                width: { xs: '100%', sm: 'auto' },
-                maxWidth: { xs: '280px', sm: 'none' },
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: '-100%',
-                  width: '100%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-                  transition: 'left 0.5s ease',
-                },
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #ea580c 0%, #dc2626 100%)',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 12px 32px rgba(249, 115, 22, 0.35)',
-                  '&::before': {
-                    left: '100%',
-                  },
-                },
-              }}
-            >
-              Get a Demo
-            </Button>
             
             <Button
               variant="outlined"
               size="large"
+              onClick={() => scrollToSection(refs?.contactRef)}
               sx={{
                 borderColor: '#3b82f6',
                 color: '#3b82f6',
                 px: { xs: 4, md: 5 },
                 py: { xs: 1.5, md: 1.5 },
                 borderRadius: '40px',
-                fontSize: { xs: '0.9rem', md: '1rem' },
+                fontSize: '1rem',
                 fontWeight: '600',
                 textTransform: 'none',
                 borderWidth: '2px',
@@ -481,7 +449,7 @@ const ServicesShowcase = () => {
                 position: 'relative',
                 overflow: 'hidden',
                 width: { xs: '100%', sm: 'auto' },
-                maxWidth: { xs: '280px', sm: 'none' },
+                maxWidth: { xs: '250px', sm: '280px' },
                 '&::before': {
                   content: '""',
                   position: 'absolute',
@@ -509,7 +477,7 @@ const ServicesShowcase = () => {
                 },
               }}
             >
-              <span style={{ position: 'relative', zIndex: 1 }}>Start Trial</span>
+              <span style={{ position: 'relative', zIndex: 1 }}>Get in Touch</span>
             </Button>
           </Box>
         </motion.div>

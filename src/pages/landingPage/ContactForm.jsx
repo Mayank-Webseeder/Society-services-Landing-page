@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Box, Typography, Grid, TextField, Button, MenuItem, FormControlLabel, Checkbox } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import TermsModal from '../../components/TermsModal';
+import PrivacyPolicyModal from '../../components/PrivacyPolicyModal';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,9 @@ const ContactForm = () => {
     message: '',
     agreeToTerms: false,
   });
+
+  const [isTermsModalOpen, setTermsModalOpen] = useState(false);
+  const [isPrivacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
 
   const serviceOptions = [
     'Society Management',
@@ -290,7 +295,7 @@ const ContactForm = () => {
               size="small"
               sx={{
                 color: '#64748b',
-                p: { xs: 0.5, md: 1 },
+                p: { xs: 0.5, md: 0.5 },
                 '&.Mui-checked': {
                   color: '#3b82f6',
                 },
@@ -298,10 +303,11 @@ const ContactForm = () => {
             />
           }
           label={
-            <Typography variant="body2" sx={{ color: '#64748b', fontSize: { xs: '0.75rem', md: '0.8rem' }, lineHeight: 1.4 }}>
+            <Typography variant="body2" sx={{ color: '#64748b', fontSize: { xs: '0.75rem', md: '0.8rem' }, pt: { xs: 0, sm: 0.5 }, lineHeight: 1.4 }}>
               By contacting us, you agree to our{' '}
               <Typography 
                 component="span" 
+                onClick={() => setTermsModalOpen(true)}
                 sx={{ 
                   color: '#3b82f6',
                   textDecoration: 'underline',
@@ -314,6 +320,7 @@ const ContactForm = () => {
               and{' '}
               <Typography 
                 component="span" 
+                onClick={() => setPrivacyPolicyModalOpen(true)}
                 sx={{ 
                   color: '#3b82f6',
                   textDecoration: 'underline',
@@ -361,6 +368,10 @@ const ContactForm = () => {
           Submit
         </Button>
       </Box>
+
+      {/* Modals */}
+      <TermsModal open={isTermsModalOpen} onClose={() => setTermsModalOpen(false)} />
+      <PrivacyPolicyModal open={isPrivacyPolicyModalOpen} onClose={() => setPrivacyPolicyModalOpen(false)} />
     </Box>
   );
 };

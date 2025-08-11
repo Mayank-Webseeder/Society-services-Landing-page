@@ -18,6 +18,7 @@ const LandingPageMain = () => {
   const testimonialsRef = useRef(null);
   const faqsRef = useRef(null);
   const contactRef = useRef(null);
+  const aboutUsRef = useRef(null);
 
 
   return (
@@ -29,16 +30,27 @@ const LandingPageMain = () => {
           testimonialsRef,
           faqsRef,
           contactRef,
+          aboutUsRef,
         }}
       />
 
       <LandingIntro />
       
-      <LandingAboutUs />
+      <div ref={aboutUsRef}>
+        <LandingAboutUs />
+      </div>
       
       <LandingHero
         servicesRef={servicesRef}
         howItWorksRef={howItWorksRef}
+        refs={{
+          servicesRef,
+          howItWorksRef,
+          testimonialsRef,
+          faqsRef,
+          contactRef,
+          aboutUsRef,
+        }}
       />
       
       <div ref={testimonialsRef}>
@@ -53,7 +65,16 @@ const LandingPageMain = () => {
         <LandingFAQ />
       </div>
       
-      <LandingFooter />
+      <LandingFooter 
+        refs={{
+          servicesRef,
+          howItWorksRef,
+          testimonialsRef,
+          faqsRef,
+          contactRef,
+          aboutUsRef,
+        }}
+      />
     </Box>
   );
 };

@@ -145,8 +145,8 @@ const LandingReviews = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, md: 2 } }}>
             <Avatar
               sx={{
-                width: { xs: 36, md: 44 },
-                height: { xs: 36, md: 44 },
+                width: { xs: 32, md: 44 },
+                height: { xs: 32, md: 44 },
                 background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
                 color: 'white',
                 fontWeight: '600',
@@ -175,10 +175,10 @@ const LandingReviews = () => {
               <Typography
                 variant="caption"
                 sx={{
+                  display: { xs: 'none', sm: 'block' },
                   color: '#64748b',
                   fontSize: { xs: '0.7rem', md: '0.8rem' },
                   lineHeight: 1.3,
-                  display: 'block',
                 }}
               >
                 {review.position}
