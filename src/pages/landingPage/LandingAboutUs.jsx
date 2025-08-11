@@ -52,9 +52,9 @@ const LandingAboutUs = () => {
               background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              fontSize: { xs: "1.8rem", md: "2.2rem" },
+              fontSize: { xs: "1.8rem", md: "2.2rem", lg: '2.5rem' },
               lineHeight: 1.2,
-              mb: { xs: 0.5, sm: 1, md: 2 },
+              mb: { xs: 0.5, sm: 1, md: 1.5 },
               mx: 'auto',
               textAlign: 'center',
             }}
