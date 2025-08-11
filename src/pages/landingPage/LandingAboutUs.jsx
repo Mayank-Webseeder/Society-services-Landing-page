@@ -156,7 +156,7 @@ const LandingAboutUs = () => {
                   fontWeight: '400',
                 }}
               >
-                Our commitment goes beyond technology. At My Needs Society, we strive to
+                Our commitment goes beyond technology. At My Society Needs, we strive to
                 create management experiences that leave a lasting impression.
                 Whether it's residential society management, vendor
                 coordination, or a comprehensive service marketplace, we focus
