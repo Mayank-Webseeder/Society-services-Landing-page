@@ -171,32 +171,8 @@ const LandingIntro = () => {
                   My Society Needs simplifies community management with unified workflows and measurable efficiency.
                 </span> */}
               </Typography>
-            </motion.div>
 
-
-            {/* Feature bullets (Tailwind CSS grid layout) */}
-            <motion.div variants={fadeSlide(0.26)}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-12 max-w-[90%] lg:max-w-4xl mx-auto">
-                {featureBullets.map((f, i) => (
-                  <div
-                    key={f.label}
-                    className="relative flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 via-white to-blue-50 hover:bg-gradient-to-r hover:from-blue-100 hover:via-indigo-50 hover:to-blue-200 border-solid border border-gray-100 rounded-lg shadow-sm transition-all duration-700 overflow-hidden group"
-                  >
-                    <div className="text-blue-500 text-2xl flex flex-shrink-0">
-                      {f.icon}
-                    </div>
-                    <p className="text-gray-800 font-medium text-sm md:text-base">
-                      {f.label}
-                    </p>
-                    {/* Left border animation */}
-                    <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* CTA buttons */}
-            <motion.div variants={fadeSlide(0.34)}>
+                  <motion.div variants={fadeSlide(0.34)}>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center" alignItems='center' sx={{ mb: { xs: 5, sm: 8, lg: 10 } }}>
                 <Button
                   onClick={() => navigate('/auth')}
@@ -239,10 +215,35 @@ const LandingIntro = () => {
                 </Button>
               </Stack>
             </motion.div>
+            </motion.div>
+
+
+            {/* Feature bullets (Tailwind CSS grid layout) */}
+            {/* <motion.div variants={fadeSlide(0.26)}>
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-5 mb-12 max-w-[90%] l mx-auto">
+                {featureBullets.map((f, i) => (
+                  <div
+                    key={f.label}
+                    className="relative flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 via-white to-blue-50 hover:bg-gradient-to-r hover:from-blue-100 hover:via-indigo-50 hover:to-blue-200 border-solid border border-gray-100 rounded-lg shadow-sm transition-all duration-700 overflow-hidden group"
+                  >
+                    <div className="text-blue-500 text-2xl flex flex-shrink-0">
+                      {f.icon}
+                    </div>
+                    <p className="text-gray-800 font-medium text-sm md:text-base">
+                      {f.label}
+                    </p>
+                    <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                  </div>
+                ))}
+              </div>
+            </motion.div> */}
+
+            {/* CTA buttons */}
+        
           </motion.div>
 
           {/* Stats Bar */}
-          <motion.div variants={fadeSlide(0.05)} className='hidden sm:block'>
+          {/* <motion.div variants={fadeSlide(0.05)} className='hidden sm:block'>
             <Box
               sx={{
                 display: 'flex',
@@ -253,11 +254,7 @@ const LandingIntro = () => {
                 flexWrap: 'wrap',
               }}
             >
-              {/*
-                { label: '10K+ Residents', icon: <InsightsIcon sx={{ fontSize: 24, color: '#0ea5e9' }} /> },
-                { label: '2.5K Reviews', icon: <AwardIcon sx={{ fontSize: 24, color: '#6366f1' }} /> },
-                { label: 'Award 2025', icon: <EmojiEventsIcon sx={{ fontSize: 24, color: '#f59e0b' }} /> },
-              */}
+        
               { [
                 { label: '10K+ Residents', icon: <InsightsIcon sx={{ fontSize: 24, color: '#0ea5e9' }} /> },
                 { label: '2.5K Reviews', icon: <ReviewsIcon sx={{ fontSize: 24, color: '#6366f1' }} /> },
@@ -289,10 +286,10 @@ const LandingIntro = () => {
                 </Box>
               ))}
             </Box>
-          </motion.div>
+          </motion.div> */}
 
           {/* Service Cards Mosaic (centered) */}
-          <Box sx={{ position: 'relative', mx: 'auto', maxWidth: { xs: 400, sm: 600, md: 700, lg: 1000 } }}>
+          {/* <Box sx={{ position: 'relative', mx: 'auto', maxWidth: { xs: 400, sm: 600, md: 700, lg: 1000 } }}>
             <Grid container spacing={2.2} justifyContent="center">
               {serviceCards.map((c, i) => (
                 <Grid
@@ -375,7 +372,7 @@ const LandingIntro = () => {
                   </Grid>
                 ))}
             </Grid>
-          </Box>
+          </Box> */}
         </Box>
       </Container>
     </Box>

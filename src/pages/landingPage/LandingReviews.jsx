@@ -290,59 +290,6 @@ const LandingReviews = () => {
               Discover why thousands of societies and vendors trust our platform for their daily operations
             </Typography>
 
-            {/* Stats */}
-            <Box sx={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              gap: { xs: 2.5, md: 4 }, 
-              flexWrap: 'wrap',
-              mb: 2
-            }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant="h4" sx={{ fontWeight: '700', color: '#3b82f6', mb: 0.5, fontSize: { xs: '1.5rem', md: '2rem' } }}>
-                    4.9
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: '#64748b', fontSize: { xs: '0.7rem', md: '0.75rem' } }}>
-                    Average Rating
-                  </Typography>
-                </Box>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant="h4" sx={{ fontWeight: '700', color: '#10b981', mb: 0.5, fontSize: { xs: '1.5rem', md: '2rem' } }}>
-                    2,000+
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: '#64748b', fontSize: { xs: '0.7rem', md: '0.75rem' } }}>
-                    Happy Customers
-                  </Typography>
-                </Box>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant="h4" sx={{ fontWeight: '700', color: '#f59e0b', mb: 0.5, fontSize: { xs: '1.5rem', md: '2rem' } }}>
-                    99%
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: '#64748b', fontSize: { xs: '0.7rem', md: '0.75rem' } }}>
-                    Satisfaction Rate
-                  </Typography>
-                </Box>
-              </motion.div>
-            </Box>
           </Box>
         </motion.div>
 
