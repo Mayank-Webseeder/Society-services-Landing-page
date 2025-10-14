@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 import faviconFinal from '/faviconFinal.png';
 
 
-const VENDOR_URL = import.meta.env.VITE_VENDOR_URL;
+const VENDOR_URL = "https://vendor.mysocietyneeds.com/";
 const SOCIETY_URL = import.meta.env.VITE_SOCIETY_URL;
 
 
