@@ -1,516 +1,103 @@
-import { useState } from "react";
-import { Box, Typography, Button, Container, Paper, Chip } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
+import { Box, Typography, Container, Paper } from "@mui/material";
 import {
   Work as WorkIcon,
   People as PeopleIcon,
   Payment as PaymentIcon,
   Groups as GroupsIcon,
   Analytics as AnalyticsIcon,
-  ArrowForward as ArrowForwardIcon,
-  CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-// import  from '../../assets/vendorImg.jpg';
 import vendorImg from "../../assets/vendorImg.jpeg";
 
-
 const VendorFeaturesSection = () => {
-
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
   const vendorFeatures = [
-    {
-      id: "jobs",
-      icon: WorkIcon,
-      title: "Job Management & Scheduling",
-      description:
-        "Efficiently manage job assignments, track progress, and optimize scheduling for maximum productivity.",
-      benefits: ["Smart Scheduling", "Task Automation", "Progress Tracking"],
-      color: "#f59e0b",
-    },
-    {
-      id: "clients",
-      icon: PeopleIcon,
-      title: "Client Relationship Management",
-      description:
-        "Build stronger relationships with societies and residents through comprehensive client management tools.",
-      benefits: [
-        "Customer Database",
-        "Communication Hub",
-        "Feedback Management",
-      ],
-      color: "#3b82f6",
-    },
-    {
-      id: "payments",
-      icon: PaymentIcon,
-      title: "Payment & Billing Solutions",
-      description:
-        "Streamline payment processing, generate invoices, and manage financial transactions seamlessly.",
-      benefits: ["Digital Payments", "Invoice Generation", "Financial Reports"],
-      color: "#10b981",
-    },
-    {
-      id: "workforce",
-      icon: GroupsIcon,
-      title: "Workforce Management",
-      description:
-        "Manage your team effectively with scheduling, performance tracking, and resource allocation tools.",
-      benefits: [
-        "Team Scheduling",
-        "Performance Analytics",
-        "Resource Planning",
-      ],
-      color: "#8b5cf6",
-    },
-    {
-      id: "analytics",
-      icon: AnalyticsIcon,
-      title: "Business Analytics & Insights",
-      description:
-        "Gain valuable insights into your business performance with detailed analytics and reporting features.",
-      benefits: ["Revenue Analytics", "Performance Metrics", "Growth Insights"],
-      color: "#ef4444",
-    },
+    { id: "jobs", icon: WorkIcon, title: "Job Management & Scheduling", color: "#f59e0b" },
+    { id: "clients", icon: PeopleIcon, title: "Client Relationship Management", color: "#3b82f6" },
+    { id: "payments", icon: PaymentIcon, title: "Payment & Billing Solutions", color: "#10b981" },
+    { id: "workforce", icon: GroupsIcon, title: "Workforce Management", color: "#8b5cf6" },
+    { id: "analytics", icon: AnalyticsIcon, title: "Business Analytics & Insights", color: "#ef4444" },
   ];
 
-  const handleDropdownClick = (dropdownId) => {
-    setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
-  };
-
-
-
   return (
-    <Container
-      maxWidth="xl"
-      sx={{ py: { xs: 3, md: 6 }, px: { xs: 2, md: 3 } }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        {/* Heading & Subheading */}
-        <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Chip
-              label="Vendor Management Platform"
-              sx={{
-                backgroundColor: "#fef3c7",
-                color: "#92400e",
-                fontWeight: "600",
-                fontSize: { xs: "0.7rem", md: "0.75rem" },
-                mb: { xs: 1.5, md: 2 },
-                px: { xs: 1.2, md: 1.5 },
-                py: 0.3,
-              }}
-            />
-          </motion.div>
+    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 6 }, px: { xs: 2, md: 3 } }}>
+      {/* Heading */}
+      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
+        <Typography variant="h2" sx={{
+          fontWeight: "800",
+          color: "#0f172a",
+          mb: 2,
+          fontSize: { xs: "1.5rem", md: "2.5rem" },
+        }}>
+          Empower your Service Business with our Vendor Platform
+        </Typography>
+        <Typography sx={{ color: "#64748b", fontSize: { xs: "0.9rem", md: "1.1rem" }, maxWidth: 600, mx: "auto" }}>
+          Scale your business operations, manage your workforce, and deliver exceptional service to societies
+        </Typography>
+      </Box>
 
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: "800",
-              color: "#0f172a",
-              mb: { xs: 1.5, md: 2 },
-              fontSize: {
-                xs: "1.4rem",
-                sm: "1.8rem",
-                md: "2.2rem",
-                lg: "2.5rem",
-              },
-              lineHeight: 1.1,
-              background: "linear-gradient(135deg, #92400e 0%, #f59e0b 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              px: { xs: 1, md: 0 },
-            }}
-          >
-            Empower your Service Business
-            <br />
-            with our Vendor Platform
-          </Typography>
+      <Box sx={{
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        gap: { xs: 4, md: 6 },
+        alignItems: "flex-start",
+        maxWidth: "95%",
+        mx: "auto"
+      }}>
+        {/* Left Image */}
 
-          <Typography
-            variant="h6"
-            sx={{
-              color: "#64748b",
-              maxWidth: { xs: "340px", sm: "450px", md: "550px" },
-              mx: "auto",
-              fontSize: { xs: "0.9rem", md: "1.1rem" },
-              lineHeight: 1.5,
-              fontWeight: "400",
-              px: { xs: 1, md: 0 },
-            }}
-          >
-            Scale your business operations, manage your workforce, and deliver
-            exceptional service to societies
-          </Typography>
-        </Box>
-
-
-        {/* Layout Content */}
-        <Box sx={{ maxWidth: { xs: '90%', sm: "80%", md: '95%', xl: "80%" }, mx: "auto" }}>
-          <Box
-            sx={{
-              display: "flex",
-              gap: { xs: 3, md: 4, lg: 6 },
-              alignItems: "flex-start",
-              flexDirection: { xs: "column", md: "row" },
-            }}
-          >
-            {/* Left Side - Feature Cards */}
-            <Box sx={{ flex: 1, width: "100%" }}>
-              {vendorFeatures.map((feature, index) => {
-                const IconComponent = feature.icon;
-                return (
-                  <motion.div
-                    key={feature.id}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  >
-                    <Paper
-                      elevation={0}
-                      sx={{
-                        mb: { xs: 1, md: 1.5 },
-                        border: "1px solid",
-                        borderColor:
-                          activeDropdown === feature.id
-                            ? feature.color
-                            : "#e2e8f0",
-                        borderRadius: { xs: "8px", md: "12px" },
-                        overflow: "hidden",
-                        cursor: "pointer",
-                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                        backgroundColor:
-                          activeDropdown === feature.id
-                            ? `${feature.color}05`
-                            : "white",
-                        "&:hover": {
-                          borderColor: feature.color,
-                          backgroundColor: `${feature.color}08`,
-                          transform: {
-                            xs: "translateY(-1px)",
-                            md: "translateY(-2px)",
-                          },
-                          boxShadow: {
-                            xs: `0 8px 16px -4px ${feature.color}20, 0 4px 6px -2px ${feature.color}10`,
-                            md: `0 15px 20px -5px ${feature.color}20, 0 8px 8px -5px ${feature.color}10`,
-                          },
-                        },
-                      }}
-                      onClick={() => handleDropdownClick(feature.id)}
-                    >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center', 
-                          px: { xs: 1.6, md: 2.5 }, 
-                          py: { xs: 1.1, md: 2.5 } 
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "flex-start",
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: { xs: 1.5, md: 1.5 },
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                p: { xs: 0.8, md: 1 },
-                                borderRadius: { xs: "8px", md: "10px" },
-                                backgroundColor: `${feature.color}15`,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <IconComponent
-                                sx={{
-                                  color: feature.color,
-                                  fontSize: { xs: "1.1rem", md: "1.25rem" },
-                                }}
-                              />
-                            </Box>
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                fontWeight: "700",
-                                color: "#0f172a",
-                                fontSize: { xs: "0.85rem", md: "1rem", lg: '1.1rem' },
-                                lineHeight: 1.3,
-                                maxWidth: { xs: "250px", md: "none" },
-                              }}
-                            >
-                              {feature.title}
-                            </Typography>
-                          </Box>
-
-                          <motion.div
-                            animate={{
-                              rotate: activeDropdown === feature.id ? 180 : 0,
-                            }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <Box
-                              sx={{
-                                p: { xs: 0.6, md: 0.75 },
-                                borderRadius: { xs: "4px", md: "6px" },
-                                backgroundColor:
-                                  activeDropdown === feature.id
-                                    ? `${feature.color}15`
-                                    : "#f1f5f9",
-                                color:
-                                  activeDropdown === feature.id
-                                    ? feature.color
-                                    : "#64748b",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                minWidth: { xs: "24px", md: "28px" },
-                                minHeight: { xs: "24px", md: "28px" },
-                              }}
-                            >
-                              <ArrowForwardIcon
-                                sx={{
-                                  fontSize: { xs: "0.9rem", md: "1rem" },
-                                  transform: "rotate(90deg)",
-                                }}
-                              />
-                            </Box>
-                          </motion.div>
-                        </Box>
-
-                        <AnimatePresence>
-                          {activeDropdown === feature.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.4, ease: "easeInOut" }}
-                            >
-                              <Box
-                                sx={{
-                                  mt: { xs: 2, md: 2.5 },
-                                  pt: { xs: 2, md: 2.5 },
-                                  borderTop: `1px solid ${feature.color}20`,
-                                }}
-                              >
-                                <Typography
-                                  variant="body1"
-                                  sx={{
-                                    color: "#475569",
-                                    fontSize: { xs: "0.85rem", md: "1rem" },
-                                    lineHeight: 1.6,
-                                    mb: { xs: 2, md: 3 },
-                                    fontWeight: "400",
-                                  }}
-                                >
-                                  {feature.description}
-                                </Typography>
-
-                                <Box sx={{ mb: { xs: 2, md: 3 } }}>
-                                  <Typography
-                                    variant="subtitle2"
-                                    sx={{
-                                      color: "#0f172a",
-                                      fontWeight: "600",
-                                      mb: { xs: 1, md: 1.5 },
-                                      fontSize: { xs: "0.75rem", md: "0.8rem" },
-                                      textTransform: "uppercase",
-                                      letterSpacing: "0.5px",
-                                    }}
-                                  >
-                                    Key Benefits
-                                  </Typography>
-                                  <Box
-                                    sx={{
-                                      display: "flex",
-                                      flexWrap: "wrap",
-                                      gap: { xs: 0.8, md: 1 },
-                                    }}
-                                  >
-                                    {feature.benefits.map((benefit, idx) => (
-                                      <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{
-                                          duration: 0.3,
-                                          delay: idx * 0.1,
-                                        }}
-                                      >
-                                        <Box
-                                          sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: { xs: 0.5, md: 0.75 },
-                                            backgroundColor: `${feature.color}08`,
-                                            px: { xs: 1, md: 1.5 },
-                                            py: { xs: 0.5, md: 0.75 },
-                                            borderRadius: {
-                                              xs: "12px",
-                                              md: "16px",
-                                            },
-                                            border: `1px solid ${feature.color}20`,
-                                          }}
-                                        >
-                                          <CheckCircleIcon
-                                            sx={{
-                                              color: feature.color,
-                                              fontSize: {
-                                                xs: "0.75rem",
-                                                md: "0.875rem",
-                                              },
-                                            }}
-                                          />
-                                          <Typography
-                                            variant="body2"
-                                            sx={{
-                                              color: "#374151",
-                                              fontWeight: "500",
-                                              fontSize: {
-                                                xs: "0.75rem",
-                                                md: "0.8rem",
-                                              },
-                                            }}
-                                          >
-                                            {benefit}
-                                          </Typography>
-                                        </Box>
-                                      </motion.div>
-                                    ))}
-                                  </Box>
-                                </Box>
-
-                                <Box
-                                  sx={{
-                                    display: "flex",
-                                    gap: { xs: 1, md: 1.5 },
-                                    flexDirection: { xs: "column", sm: "row" },
-                                    "& > *": { flex: { xs: 1, sm: "none" } },
-                                  }}
-                                >
-                                  <Button
-                                    variant="contained"
-                                    sx={{
-                                      backgroundColor: feature.color,
-                                      color: "white",
-                                      px: { xs: 2.5, md: 3 },
-                                      py: { xs: 1, md: 1 },
-                                      borderRadius: { xs: "6px", md: "8px" },
-                                      textTransform: "none",
-                                      fontWeight: "600",
-                                      fontSize: {
-                                        xs: "0.8rem",
-                                        md: "0.875rem",
-                                      },
-                                      boxShadow: `0 3px 10px ${feature.color}30`,
-                                      "&:hover": {
-                                        backgroundColor: feature.color,
-                                        filter: "brightness(0.9)",
-                                        transform: "translateY(-1px)",
-                                        boxShadow: `0 6px 20px ${feature.color}40`,
-                                      },
-                                    }}
-                                  >
-                                    Get a Demo
-                                  </Button>
-
-                                  <Button
-                                    variant="outlined"
-                                    sx={{
-                                      borderColor: feature.color,
-                                      color: feature.color,
-                                      px: { xs: 2.5, md: 3 },
-                                      py: { xs: 1, md: 1 },
-                                      borderRadius: { xs: "6px", md: "8px" },
-                                      textTransform: "none",
-                                      fontWeight: "600",
-                                      fontSize: {
-                                        xs: "0.8rem",
-                                        md: "0.875rem",
-                                      },
-                                      "&:hover": {
-                                        borderColor: feature.color,
-                                        backgroundColor: `${feature.color}08`,
-                                        transform: "translateY(-1px)",
-                                      },
-                                    }}
-                                  >
-                                    Learn More
-                                  </Button>
-                                </Box>
-                              </Box>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </Box>
-                    </Paper>
-                  </motion.div>
-                );
-              })}
-            </Box>
-
-            {/* Right Side - Enhanced Visual */}
-            <Box
-              sx={{
-                flex: 1,
-                order: { xs: -1, md: 2 },
-                position: { xs: "static", lg: "sticky" },
-                top: 80,
-                mx: "auto",
-              }}
-            >
-              <motion.div
-                className="flex justify-center"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <Box
-                  sx={{
-                    width: { xs: '90%', sm: '100%' },
-                    height: { xs: '300px', sm: '440px' }, // Responsive height
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    border: "1px solid #e2e8f0",
-                  }}
-                >
-                  <img
-                    src={vendorImg}
-                    alt="Vendor Management Dashboard Preview"
-                    style={{
-                      width: "100%",
-                      height: "440px", // Increased height
-                      objectFit: "cover",
-                      borderRadius: "16px",
-                      border: "1px solid #e2e8f0",
-                    }}
-                  />
+           <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
+          {vendorFeatures.map((feature) => {
+            const IconComponent = feature.icon;
+            return (
+              <Paper key={feature.id} elevation={0} sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+                p: { xs: 2, md: 3 },
+                borderRadius: 2,
+                border: `1px solid ${feature.color}20`,
+                height: 80, // uniform height
+                backgroundColor: "#fff",
+              }}>
+                <Box sx={{
+                  p: 1,
+                  borderRadius: 1,
+                  backgroundColor: `${feature.color}15`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minWidth: 48,
+                  minHeight: 48,
+                }}>
+                  <IconComponent sx={{ color: feature.color, fontSize: 28 }} />
                 </Box>
-              </motion.div>
-            </Box>
+                <Typography variant="h6" sx={{ fontWeight: 700, color: "#0f172a" }}>
+                  {feature.title}
+                </Typography>
+              </Paper>
+            )
+          })}
+        </Box>
+      
+
+        {/* Right Features */}
+       <Box sx={{ flex: 1, mx: "auto" }}>
+          <Box sx={{
+            width: "100%",
+            height: { xs: 300, md: 500 },
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid #e2e8f0",
+          }}>
+            <img
+              src={vendorImg}
+              alt="Vendor Management Dashboard Preview"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </Box>
         </Box>
-      </motion.div>
+      </Box>
     </Container>
-  );
+  )
 };
 
 export default VendorFeaturesSection;

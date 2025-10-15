@@ -1,138 +1,217 @@
-import { Box, Typography, Container, Chip } from '@mui/material';
-import { motion } from 'framer-motion';
-import { ContactMail as ContactMailIcon } from '@mui/icons-material';
-import ContactInformation from './ContactInformation';
-import ContactForm from './ContactForm';
-
+import React, { useState } from 'react';
+import { Box, Container, Typography } from "@mui/material";
 
 const LandingContact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = () => {
+    console.log('Form submitted:', formData);
+    alert('Your request has been sent successfully!');
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
 
   return (
-    <Box
-      sx={{
-        py: { xs: 4, md: 8 },
-        px: { xs: 2, md: 0 },
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background Pattern */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: 'radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)',
-        }}
-      />
+    <div className="bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+       {/* <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10   } }}>
+      
 
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Chip
-                icon={<ContactMailIcon />}
-                label="Get In Touch"
-                sx={{
-                  backgroundColor: '#dbeafe',
-                  color: '#1e40af',
-                  fontWeight: '600',
-                  fontSize: { xs: '0.7rem', md: '0.75rem' },
-                  mb: { xs: 2, md: 3 },
-                  px: { xs: 1, md: 1.5 },
-                  py: 0.3,
-                  '& .MuiChip-icon': {
-                    fontSize: { xs: '0.9rem', md: '1rem' },
-                    color: '#1e40af'
-                  }
-                }}
-              />
-            </motion.div>
-            
             <Typography
               variant="h2"
               sx={{
                 fontWeight: '800',
+                mb: 2,
+                fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
+                lineHeight: 1.1,
                 color: '#0f172a',
-                fontSize: { xs: '1.6rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-                lineHeight: { xs: 1.2, md: 1.1 },
-                mx: 'auto',
-                mb: { xs: 1.5, md: 2 },
-                background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                position: 'relative',
+                display: 'inline-block',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: -10,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '60%',
+                  height: '4px',
+                   background: 'linear-gradient(90deg, transparent, #0933A6, transparent)',
+                  borderRadius: '2px',
+                  transition: 'all 0.6s ease',
+                },
               }}
             >
-              Contact Us
+               Contact Us
             </Typography>
-            
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#64748b',
-                maxWidth: { xs: '90%', sm: '400px', md: '500px' },
-                mx: 'auto',
-                fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.1rem' },
-                lineHeight: { xs: 1.5, md: 1.6 },
-                fontWeight: '400',
-                px: { xs: 1, md: 0 }
-              }}
-            >
-              Ready to transform your society management? Let's discuss how our platform can help you
-            </Typography>
-          </Box>
-        </motion.div>
+
+          
+          </Box> */}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          {/* Left Column - Contact Info */}
+     <div className="space-y-8 px-4 sm:px-6 lg:px-0">
+  {/* Heading */}
+  <div>
+    <h1 className="text-2xl sm:text-3xl  lg:text-3xl text-black leading-tight mb-4 sm:mb-6">
+      Reach Out to My Society Needs
+    </h1>
+    <p className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-md sm:max-w-lg">
+      Whether you want to manage your society more efficiently, request a service, or have questions about our vendor coordination tools, our team is ready to assist your community.
+    </p>
+  </div>
+
+  {/* Contact Info */}
+  <div className="space-y-5">
+    <div>
+      <p className="text-gray-600 text-sm sm:text-base mb-1 sm:mb-2">Email:</p>
+      <a
+        href="mailto:contact@mysocietyneeds.com"
+        className="text-lg  text-black hover:text-gray-700 transition-colors no-underline"
+      >
+        contact@mysocietyneeds.com
+      </a>
+    </div>
+
+    <div>
+      <p className="text-gray-600 text-sm sm:text-base mb-1 sm:mb-2">Phone:</p>
+      <a
+        href="tel:+919118811192"
+        className="text-lg  text-black hover:text-gray-700 transition-colors no-underline"
+      >
+        +91-9646463534
+      </a>
+    </div>
+
+    <div>
+      <p className="text-gray-600 text-sm sm:text-base mb-1 sm:mb-2">Address:</p>
+      <p className="text-black text-base ">
+        123 Society Street, Community Plaza, Mumbai, India
+      </p>
+    </div>
+  </div>
+</div>
 
 
-        {/* Content Layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-              gap: { xs: 3, md: 1, lg: 6 },
-              maxWidth: { xs: '100%', lg:'95%', xl: '90%' },
-              mx: 'auto',
-            }}
-          >
-            {/* Left Side - Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <ContactInformation />
-            </motion.div>
+          {/* Right Column - Contact Form */}
+          <div className="bg-white rounded-3xl shadow-lg p-6 sm:p-8 lg:p-10">
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    placeholder="Enter your first name"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    placeholder="Enter your last name"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
 
-            {/* Right Side - Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
-              <ContactForm />
-            </motion.div>
-          </Box>
-        </motion.div>
-      </Container>
-    </Box>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email address"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Enter your phone number"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  How can we assist your society?
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Describe your request or issue..."
+                  rows="6"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all resize-none"
+                />
+              </div>
+
+              <div className="flex justify-end">
+                <button
+                  onClick={handleSubmit}
+                  className="bg-black text-white px-8 py-4 rounded-full flex items-center gap-3 hover:bg-gray-800 transition-colors group"
+                >
+                  <span className="font-medium">Send Message</span>
+                  <span className="w-6 h-6 bg-white rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                    <svg
+                      className="w-3 h-3 text-black"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

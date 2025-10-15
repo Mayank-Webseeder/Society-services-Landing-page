@@ -124,7 +124,7 @@ const LandingAboutUs = () => {
               sx={{
                 fontWeight: '800',
                 mb: 2,
-                fontSize: { xs: '2.2rem', sm: '3rem', md: '3.8rem' },
+                fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
                 lineHeight: 1.1,
                 color: '#0f172a',
                 position: 'relative',

@@ -1,13 +1,8 @@
 import { useState } from 'react';
-import { Box, Container, Typography, Collapse, Chip, Paper } from '@mui/material';
+import { Box, Container, Typography, Chip, Paper } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ExpandMore as ExpandMoreIcon,
-  Help as HelpIcon,
-  CheckCircle as CheckCircleIcon
-} from '@mui/icons-material';
+import { ExpandMore as ExpandMoreIcon, Help as HelpIcon, CheckCircle as CheckCircleIcon } from '@mui/icons-material';
 import dummyFAQs from '../../static/dummyData_LandingFAQs';
-
 
 const LandingFAQ = () => {
   const [expandedId, setExpandedId] = useState(null);
@@ -57,7 +52,8 @@ const LandingFAQ = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)',
+          backgroundImage:
+            'radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)',
         }}
       />
 
@@ -92,7 +88,7 @@ const LandingFAQ = () => {
                 }}
               />
             </motion.div>
-            
+
             <Typography
               variant="h2"
               sx={{
@@ -112,7 +108,7 @@ const LandingFAQ = () => {
               <br />
               We've Got Answers
             </Typography>
-            
+
             <Typography
               variant="h6"
               sx={{
@@ -131,157 +127,146 @@ const LandingFAQ = () => {
         </motion.div>
 
         {/* FAQ List */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' }, columnGap: { xs: 0, lg: 3, xl: 7 }, maxWidth: { xs: '100%', sm: '90%', md: '80%', lg: '90%', xl: '85%' }, mx: 'auto' }}>
-            <AnimatePresence>
-              {dummyFAQs.map((faq, index) => (
-                <motion.div
-                  key={faq.id}
-                  variants={itemVariants}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+        <motion.div variants={containerVariants} initial="hidden" animate="visible">
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' },
+            columnGap: { xs: 0, lg: 3, xl: 7 },
+            maxWidth: { xs: '100%', sm: '90%', md: '80%', lg: '90%', xl: '85%' },
+            mx: 'auto'
+          }}>
+            {dummyFAQs.map((faq, index) => (
+              <motion.div
+                key={faq.id}
+                variants={itemVariants}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    mb: { xs: 1.5, md: 2 },
+                    borderRadius: { xs: '8px', md: '12px' },
+                    overflow: 'hidden',
+                    border: '1px solid',
+                    borderColor: expandedId === faq.id ? '#3b82f6' : '#e2e8f0',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      borderColor: '#3b82f6',
+                      transform: { xs: 'none', md: 'translateY(-1px)' },
+                      boxShadow: { xs: 'none', md: '0 8px 20px rgba(59, 130, 246, 0.12)' },
+                    },
+                  }}
                 >
-                  <Paper
-                    elevation={0}
+                  <Box
+                    onClick={() => handleToggleExpand(faq.id)}
                     sx={{
-                      mb: { xs: 1.5, md: 2 },
-                      borderRadius: { xs: '8px', md: '12px' },
-                      overflow: 'hidden',
-                      border: '1px solid',
-                      borderColor: expandedId === faq.id ? '#3b82f6' : '#e2e8f0',
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      '&:hover': {
-                        borderColor: '#3b82f6',
-                        transform: { xs: 'none', md: 'translateY(-1px)' },
-                        boxShadow: { xs: 'none', md: '0 8px 20px rgba(59, 130, 246, 0.12)' },
-                      },
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      cursor: 'pointer',
+                      py: { xs: 1.5, md: 2.5 },
+                      px: { xs: 2, md: 3 },
+                      backgroundColor: expandedId === faq.id ? '#f8fafc' : 'white',
+                      transition: 'all 0.3s ease',
+                      position: 'relative',
+                      minHeight: { xs: '60px', md: 'auto' },
                     }}
                   >
-                    <Box
-                      onClick={() => handleToggleExpand(faq.id)}
-                      sx={{
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 1.5 }, flex: 1 }}>
+                      <Box sx={{
+                        p: { xs: 0.5, md: 0.75 },
+                        borderRadius: { xs: '6px', md: '8px' },
+                        backgroundColor: expandedId === faq.id ? '#3b82f6' : '#dbeafe',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        cursor: 'pointer',
-                        py: { xs: 1.5, md: 2.5 },
-                        px: { xs: 2, md: 3 },
-                        backgroundColor: expandedId === faq.id ? '#f8fafc' : 'white',
+                        justifyContent: 'center',
+                        minWidth: { xs: 24, md: 30 },
+                        height: { xs: 24, md: 30 },
                         transition: 'all 0.3s ease',
-                        position: 'relative',
-                        minHeight: { xs: '60px', md: 'auto' },
-                      }}
-                    >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 1.5 }, flex: 1 }}>
-                        <Box
+                      }}>
+                        <CheckCircleIcon
                           sx={{
-                            p: { xs: 0.5, md: 0.75 },
-                            borderRadius: { xs: '6px', md: '8px' },
-                            backgroundColor: expandedId === faq.id ? '#3b82f6' : '#dbeafe',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            minWidth: { xs: 24, md: 30 },
-                            height: { xs: 24, md: 30 },
-                            transition: 'all 0.3s ease',
+                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            color: expandedId === faq.id ? 'white' : '#3b82f6'
                           }}
-                        >
-                          <CheckCircleIcon 
-                            sx={{ 
-                              fontSize: { xs: '0.875rem', md: '1rem' }, 
-                              color: expandedId === faq.id ? 'white' : '#3b82f6'
-                            }} 
-                          />
-                        </Box>
-                        
-                        <Typography 
-                          variant="h6" 
-                          sx={{ 
-                            fontWeight: '700', 
-                            color: expandedId === faq.id ? '#3b82f6' : '#0f172a',
-                            fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
-                            lineHeight: { xs: 1.3, md: 1.4 },
-                            transition: 'color 0.3s ease',
-                            pr: { xs: 1, md: 0 },
-                          }}
-                        >
-                          {faq.question}
-                        </Typography>
+                        />
                       </Box>
-                      
-                      <motion.div
-                        animate={{ 
-                          rotate: expandedId === faq.id ? 180 : 0,
+
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: '700',
+                          color: expandedId === faq.id ? '#3b82f6' : '#0f172a',
+                          fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
+                          lineHeight: { xs: 1.3, md: 1.4 },
+                          transition: 'color 0.3s ease',
+                          pr: { xs: 1, md: 0 },
                         }}
+                      >
+                        {faq.question}
+                      </Typography>
+                    </Box>
+
+                    <motion.div
+                      animate={{ rotate: expandedId === faq.id ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Box sx={{
+                        p: { xs: 0.5, md: 0.75 },
+                        borderRadius: { xs: '4px', md: '6px' },
+                        backgroundColor: expandedId === faq.id ? '#3b82f6' : '#f1f5f9',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minWidth: { xs: 28, md: 32 },
+                        height: { xs: 28, md: 32 },
+                        transition: 'all 0.3s ease',
+                      }}>
+                        <ExpandMoreIcon
+                          sx={{
+                            fontSize: { xs: '1.1rem', md: '1.25rem' },
+                            color: expandedId === faq.id ? 'white' : '#64748b'
+                          }}
+                        />
+                      </Box>
+                    </motion.div>
+                  </Box>
+
+                  {/* Smooth AnimatePresence Expansion */}
+                  <AnimatePresence initial={false}>
+                    {expandedId === faq.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Box
-                          sx={{
-                            p: { xs: 0.5, md: 0.75 },
-                            borderRadius: { xs: '4px', md: '6px' },
-                            backgroundColor: expandedId === faq.id ? '#3b82f6' : '#f1f5f9',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            minWidth: { xs: 28, md: 32 },
-                            height: { xs: 28, md: 32 },
-                            transition: 'all 0.3s ease',
-                          }}
-                        >
-                          <ExpandMoreIcon 
-                            sx={{ 
-                              fontSize: { xs: '1.1rem', md: '1.25rem' }, 
-                              color: expandedId === faq.id ? 'white' : '#64748b'
-                            }} 
-                          />
+                        <Box sx={{ px: 3, py: 2, backgroundColor: '#f8fafc' }}>
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              color: '#475569',
+                              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '0.95rem' },
+                              lineHeight: { xs: 1.5, md: 1.6 },
+                              fontWeight: '400',
+                            }}
+                          >
+                            {faq.answer}
+                          </Typography>
                         </Box>
                       </motion.div>
-                    </Box>
-                    
-                    <Collapse in={expandedId === faq.id} timeout={300}>
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: expandedId === faq.id ? 1 : 0 }}
-                        transition={{ duration: 0.3, delay: expandedId === faq.id ? 0.2 : 0 }}
-                      >
-                        <Box 
-                          sx={{ 
-                            px: { xs: 2, md: 3 },
-                            pb: { xs: 2, md: 3 },
-                            pt: { xs: 0.5, md: 0.75 },
-                            backgroundColor: '#f8fafc',
-                            borderTop: '1px solid #e2e8f0',
-                          }}
-                        >
-                          <Box sx={{ ml: { xs: 3, md: 4 } }}>
-                            <Typography 
-                              variant="body1" 
-                              sx={{ 
-                                color: '#475569',
-                                fontSize: { xs: '0.8rem', sm: '0.875rem', md: '0.95rem' },
-                                lineHeight: { xs: 1.5, md: 1.6 },
-                                fontWeight: '400',
-                              }}
-                            >
-                              {faq.answer}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </motion.div>
-                    </Collapse>
-                  </Paper>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                    )}
+                  </AnimatePresence>
+                </Paper>
+              </motion.div>
+            ))}
           </Box>
         </motion.div>
+        
       </Container>
     </Box>
   );

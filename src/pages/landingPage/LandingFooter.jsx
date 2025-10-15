@@ -1,393 +1,254 @@
-import { Box, Container, Typography, Link, IconButton } from '@mui/material';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import EmailIcon from '@mui/icons-material/Email';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import TermsModal from '../../components/TermsModal';
-import PrivacyPolicyModal from '../../components/PrivacyPolicyModal';
+import React, { useState, useEffect } from 'react';
+import { Heart, Linkedin, Facebook, Twitter, Mail, ArrowUp, MapPin, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
+const LandingFooter = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-const quickLinks = [
-  { label: 'Home', action: 'scrollToTop' },
-  { label: 'How we work', action: 'scrollToSection', ref: 'howItWorksRef' },
-  { label: 'Contact', action: 'scrollToSection', ref: 'contactRef' },
-];
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setIsVisible(window.pageYOffset > 300);
+    };
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
-const resources = [
-  { label: 'FAQs', action: 'scrollToSection', ref: 'faqsRef' },
-  { label: 'Reviews', action: 'scrollToSection', ref: 'testimonialsRef' },
-  { label: 'About Us', action: 'scrollToSection', ref: 'aboutUsRef' },
-];
-
-const legalLinks = [
-  { label: 'Privacy Policy', action: 'openModal', modal: 'privacy' },
-  { label: 'Terms & Conditions', action: 'openModal', modal: 'terms' },
-];
-
-const socialLinks = [
-  { icon: LinkedInIcon, color: '#0077b5', hoverColor: '#005582' },
-  { icon: FacebookIcon, color: '#1877f2', hoverColor: '#166fe5' },
-  { icon: TwitterIcon, color: '#1da1f2', hoverColor: '#0d8bd9' },
-  { icon: EmailIcon, color: '#ea4335', hoverColor: '#d23321' },
-];
-
-
-const LandingFooter = ({ refs }) => {
-  const [isTermsModalOpen, setTermsModalOpen] = useState(false);
-  const [isPrivacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
-
-  // Smooth scroll handler
-  const scrollToSection = (ref) => {
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
   };
 
-  const scrollToTop = () => {
+  const quickLinks = [
+    { label: 'Home', section: 'home' },
+    { label: 'How We Work', section: 'howItWorks' },
+    { label: 'Services', section: 'services' },
+    { label: 'Contact', section: 'contact' },
+  ];
+
+  const resources = [
+    { label: 'FAQs', section: 'faqs' },
+    { label: 'Reviews', section: 'reviews' },
+    { label: 'About Us', section: 'about' },
+    { label: 'Blog', section: 'blog' },
+  ];
+
+  const legalLinks = [
+    { label: 'Privacy Policy', section: 'privacy' },
+    { label: 'Terms & Conditions', section: 'terms' },
+    { label: 'Cookie Policy', section: 'cookies' },
+  ];
+
+  const socialLinks = [
+    { icon: Linkedin, color: '#0077b5', name: 'LinkedIn', href: '#' },
+    { icon: Facebook, color: '#1877f2', name: 'Facebook', href: '#' },
+    { icon: Twitter, color: '#1da1f2', name: 'Twitter', href: '#' },
+    { icon: Mail, color: '#ea4335', name: 'Email', href: 'mailto:contact@mysocietyneeds.com' },
+  ];
+
+  const handleSectionClick = (section) => {
+    console.log(`Navigating to: ${section}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleLinkClick = (link) => {
-    if (link.action === 'scrollToSection' && link.ref) {
-      scrollToSection(refs?.[link.ref]);
-    } else if (link.action === 'scrollToTop') {
-      scrollToTop();
-    } else if (link.action === 'openModal') {
-      if (link.modal === 'privacy') {
-        setPrivacyPolicyModalOpen(true);
-      } else if (link.modal === 'terms') {
-        setTermsModalOpen(true);
-      }
-    }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <Box
-      sx={{
-        background: 'linear-gradient(90deg, #0f172a 0%, #334155 100%)',
-        borderTop: '1px solid #1e293b',
-        pt: { xs: 2, md: 3 },
-        pb: { xs: 1, md: 3 },
-        px: { xs: 0, md: 4, lg: 4, xl:1 },
-      }}
-    >
-      <Container maxWidth="xl" className='flex justify-center'>
-        <motion.div
-          className='flex align-center flex-col gap-5 md:gap-8 lg:gap-12 w-full'
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          
-        >
-          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-12 gap-3 sm:gap-5 justify-between">
-            {/* Brand Section - Hidden on mobile */}
-            <div className="hidden xl:block xl:col-span-4">
-              <motion.div variants={itemVariants} className='max-w-lg'>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: '700',
-                    color: '#f8fafc',
-                    fontSize: { xs: '1.5rem', md: '1.8rem' },
-                    mb: { xs: 1, md: 2 },
-                  }}
-                >
+    <footer className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white overflow-hidden">
+      {/* Animated Mesh Background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(90deg, rgba(251,146,60,0.1) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(251,146,60,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px'
+        }}></div>
+      </div>
+
+      {/* Dynamic Gradient Orbs */}
+      <div 
+        className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl transition-all duration-1000"
+        style={{
+          transform: `translate(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px)`
+        }}
+      ></div>
+      <div 
+        className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl transition-all duration-1000"
+        style={{
+          transform: `translate(-${mousePosition.x * 0.1}px, -${mousePosition.y * 0.1}px)`
+        }}
+      ></div>
+      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
+
+      <div 
+        className="relative max-w-[90vw] mx-auto px-6 lg:px-8"
+        onMouseMove={handleMouseMove}
+      >
+        {/* Main Footer Content */}
+        <div className="py-5">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            
+            {/* Brand Section */}
+            <div className="lg:flex-1 lg:max-w-md">
+              <div className="mb-6 group">
+                <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent transition-all duration-300">
                   My Society Needs
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: '#cbd5e1',
-                    opacity: 0.6,
-                    fontSize: '1rem',
-                    lineHeight: 1.6,
-                    maxWidth: '360px'
-                  }}
-                >
-                  Driving growth with smart solutions across society management, 
-                  vendor coordination, and residential community services.
-                </Typography>
-              </motion.div>
+                </h2>
+                <div className="h-1 w-20 bg-gradient-to-r from-orange-500 to-transparent rounded-full group-hover:w-32 transition-all duration-300"></div>
+              </div>
+              
+              <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-sm">
+                Empowering residential communities with innovative solutions for society management, vendor coordination, and seamless service delivery.
+              </p>
+
+              {/* Contact Info with Hover Effects */}
+              {/* <div className="space-y-3 mb-8">
+                <div className="flex items-start gap-3 text-slate-400 text-sm group cursor-pointer hover:text-orange-400 transition-colors">
+                  <MapPin className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span>123 Society Street, Community Plaza, Mumbai, India</span>
+                </div>
+                <a href="tel:+919876543210" className="flex no-underline items-center gap-3 text-slate-400 text-sm group hover:text-orange-400 transition-colors">
+                  <Phone className="w-5 h-5 text-orange-500 flex-shrink-0 group-hover:rotate-12 transition-transform" />
+                  <span>+91 98765 43210</span>
+                </a>
+                <a href="mailto:contact@mysocietyneeds.com" className="flex no-underline items-center gap-3 text-slate-400 text-sm group hover:text-orange-400 transition-colors">
+                  <Mail className="w-5 h-5 text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span>contact@mysocietyneeds.com</span>
+                </a>
+              </div> */}
+
+              {/* Enhanced Social Links */}
+              <div className="flex gap-3">
+                {socialLinks.map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    className="group relative w-11 h-11 rounded-xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center transition-all duration-300 hover:border-orange-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/20 overflow-hidden"
+                    aria-label={social.name}
+                    style={{
+                      animation: `float ${3 + idx * 0.5}s ease-in-out infinite`
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/20 group-hover:to-transparent transition-all duration-300"></div>
+                    <social.icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-all relative z-10 group-hover:scale-110" />
+                  </a>
+                ))}
+              </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: '600',
-                    color: '#f97316',
-                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
-                    mb: { xs: 0.5, sm: 1, md: 2 },
-                  }}
-                >
-                  Quick Links
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
-                  {quickLinks.map((link) => (
-                    <Box
-                      key={link.label}
-                      component="button"
-                      onClick={() => handleLinkClick(link)}
-                      sx={{
-                        background: 'none',
-                        border: 'none',
-                        padding: 0,
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                        color: '#cbd5e1',
-                        textDecoration: 'none',
-                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
-                        transition: 'color 0.3s ease',
-                        py: { xs: 0.125, sm: 0.25, md: 0 },
-                        '&:hover': {
-                          color: '#3b82f6',
-                        },
-                      }}
+            {/* Navigation Links Container */}
+            <div className="flex flex-wrap gap-12 lg:gap-16 lg:flex-1">
+              
+              {/* Quick Links */}
+              <div className="flex-1 min-w-[150px]">
+              <h3 className="text-white font-semibold text-lg mb-6 relative inline-block group">
+                Quick Links
+                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-orange-500 rounded-full group-hover:w-full transition-all duration-300"></span>
+              </h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link, idx) => (
+                  <li key={idx}>
+                    <Link
+                      onClick={() => handleSectionClick(link.section)}
+                      className="group no-underline flex items-center text-slate-400 hover:text-orange-500 transition-all duration-300 text-sm hover:translate-x-1"
                     >
+                      <span className="inline-block w-0 group-hover:w-2 h-0.5 bg-orange-500 transition-all duration-300 mr-0 group-hover:mr-2 rounded-full"></span>
                       {link.label}
-                    </Box>
-                  ))}
-                </Box>
-              </motion.div>
-            </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              </div>
 
-            {/* Resources */}
-            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: '600',
-                    color: '#f97316',
-                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
-                    mb: { xs: 0.5, sm: 1, md: 2 },
-                  }}
-                >
-                  Resources
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
-                  {resources.map((link) => (
-                    link.action ? (
-                      <Box
-                        key={link.label}
-                        component="button"
-                        onClick={() => handleLinkClick(link)}
-                        sx={{
-                          background: 'none',
-                          border: 'none',
-                          padding: 0,
-                          cursor: 'pointer',
-                          textAlign: 'left',
-                          color: '#64748b',
-                          textDecoration: 'none',
-                          fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
-                          transition: 'color 0.3s ease',
-                          py: { xs: 0.125, sm: 0.25, md: 0 },
-                          '&:hover': {
-                            color: '#3b82f6',
-                          },
-                        }}
-                      >
-                        {link.label}
-                      </Box>
-                    ) : (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        sx={{
-                          color: '#64748b',
-                          textDecoration: 'none',
-                          fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
-                          transition: 'color 0.3s ease',
-                          py: { xs: 0.125, sm: 0.25, md: 0 },
-                          '&:hover': {
-                            color: '#3b82f6',
-                          },
-                        }}
-                      >
-                        {link.label}
-                      </Link>
-                    )
-                  ))}
-                </Box>
-              </motion.div>
-            </div>
-
-            {/* Legal */}
-            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: '600',
-                    color: '#f97316',
-                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
-                    mb: { xs: 0.5, sm: 1, md: 2 },
-                  }}
-                >
-                  Legal
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
-                  {legalLinks.map((link) => (
-                    <Box
-                      key={link.label}
-                      component="button"
-                      onClick={() => handleLinkClick(link)}
-                      sx={{
-                        background: 'none',
-                        border: 'none',
-                        padding: 0,
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                        color: '#64748b',
-                        textDecoration: 'none',
-                        fontSize: { xs: '0.75rem', sm: '0.9rem', md: '0.95rem' },
-                        transition: 'color 0.3s ease',
-                        py: { xs: 0.125, sm: 0.25, md: 0 },
-                        '&:hover': {
-                          color: '#3b82f6',
-                        },
-                      }}
+              {/* Resources */}
+              <div className="flex-1 min-w-[150px]">
+              <h3 className="text-white font-semibold text-lg mb-6 relative inline-block group">
+                Resources
+                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-orange-500 rounded-full group-hover:w-full transition-all duration-300"></span>
+              </h3>
+              <ul className="space-y-3">
+                {resources.map((link, idx) => (
+                  <li key={idx}>
+                    <Link
+                      onClick={() => handleSectionClick(link.section)}
+                      className="group no-underline flex items-center text-slate-400 hover:text-orange-500 transition-all duration-300 text-sm hover:translate-x-1"
                     >
+                      <span className="inline-block w-0 group-hover:w-2 h-0.5 bg-orange-500 transition-all duration-300 mr-0 group-hover:mr-2 rounded-full"></span>
                       {link.label}
-                    </Box>
-                  ))}
-                </Box>
-              </motion.div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              </div>
+
+              {/* Legal */}
+              <div className="flex-1 min-w-[150px]">
+              <h3 className="text-white font-semibold text-lg mb-6 relative inline-block group">
+                Legal
+                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-orange-500 rounded-full group-hover:w-full transition-all duration-300"></span>
+              </h3>
+              <ul className="space-y-3">
+                {legalLinks.map((link, idx) => (
+                  <li key={idx}>
+                    <Link
+                      onClick={() => handleSectionClick(link.section)}
+                      className="group flex no-underline items-center text-slate-400 hover:text-orange-500 transition-all duration-300 text-sm hover:translate-x-1"
+                    >
+                      <span className="inline-block w-0 group-hover:w-2 h-0.5 bg-orange-500 transition-all duration-300 mr-0 group-hover:mr-2 rounded-full"></span>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              </div>
+
             </div>
 
-            {/* Stay Connected */}
-            <div className="col-span-1 sm:col-span-1 xl:col-span-2">
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: '600',
-                    color: '#f97316',
-                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
-                    mb: { xs: 0.5, sm: 1, md: 2 },
-                  }}
-                >
-                  Stay Connected
-                </Typography>
-                <Box sx={{ 
-                  display: 'flex', 
-                  gap: { xs: 1, sm: 1.5, md: 2 },
-                  justifyContent: 'flex-start'
-                }}>
-                  {socialLinks.map((link, index) => (
-                    <IconButton
-                      key={index}
-                      sx={{
-                        backgroundColor: link.color,
-                        color: 'white',
-                        width: { xs: 30, sm: 36, md: 40 },
-                        height: { xs: 30, sm: 36, md: 40 },
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          backgroundColor: link.hoverColor,
-                          transform: 'translateY(-2px)',
-                        },
-                      }}
-                    >
-                      <link.icon sx={{ fontSize: { xs: '14px', sm: 'small' } }} />
-                    </IconButton>
-                  ))}
-                </Box>
-              </motion.div>
+          </div>
+        </div>
+
+        {/* Animated Divider */}
+        <div className="relative h-px overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent animate-pulse"></div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2 text-slate-400 text-sm order-2 md:order-1">
+              <span>Made with</span>
+              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
+              <span>by <span className="text-orange-500 font-medium hover:text-orange-400 transition-colors cursor-pointer">Webseeder Technologies</span></span>
+            </div>
+            
+            <div className="text-slate-400 text-sm order-1 md:order-2">
+              <p>© 2025 My Society Needs. All rights reserved.</p>
             </div>
           </div>
+        </div>
+      </div>
 
+   
 
-          {/* Bottom Copyright Section */}
-          <motion.div
-            variants={itemVariants}
-            style={{
-              // mt: '3rem',
-              // pt: '2rem',
-              my: '10px',
-              marginTop: { xs: '2rem', md: '3rem' },
-              paddingTop: { xs: '1.5rem', md: '2rem' },
-              borderTop: '1px solid #e5e7eb',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                // border: '2px solid red',
-                flexDirection: { xs: 'column', sm: 'row' },
-                justifyContent: 'center',
-                alignItems: 'center',
-                mt: '16px',
-                gap: { xs: 0.5, sm: 1 },
-                textAlign: 'center',
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  color: '#9ca3af',
-                  fontSize: { xs: '0.8rem', md: '0.9rem' },
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 0.5,
-                }}
-              >
-                Made with{' '}
-                <FavoriteIcon 
-                  sx={{ 
-                    color: '#ef4444', 
-                    fontSize: { xs: '0.9rem', md: '1rem' }
-                  }} 
-                />{' '}
-                by Webseeder Technologies
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: '#9ca3af',
-                  fontSize: { xs: '0.8rem', md: '0.9rem' },
-                }}
-              >
-                © 2025 My Society Needs. All rights reserved.
-              </Typography>
-            </Box>
-          </motion.div>
-        </motion.div>
-      </Container>
-
-      {/* Modals */}
-      <TermsModal open={isTermsModalOpen} onClose={() => setTermsModalOpen(false)} />
-      <PrivacyPolicyModal open={isPrivacyPolicyModalOpen} onClose={() => setPrivacyPolicyModalOpen(false)} />
-    </Box>
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-5px); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.8); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
+    </footer>
   );
 };
 

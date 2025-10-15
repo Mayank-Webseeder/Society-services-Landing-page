@@ -1,395 +1,168 @@
-import { Box, Container, Typography, Avatar, Button, Chip, Paper } from '@mui/material';
-import { motion } from 'framer-motion';
-import { 
-  Star as StarIcon,
-  FormatQuote as QuoteIcon,
-  Verified as VerifiedIcon,
-  TrendingUp as TrendingUpIcon
-} from '@mui/icons-material';
+import React, { useState, useEffect, useRef } from 'react';
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import dummyReviews from '../../static/dummyData_Reviews';
-
+import { Star as StarIcon, Verified as VerifiedIcon } from '@mui/icons-material';
+import { Box, Container, Typography } from "@mui/material";
 
 const LandingReviews = () => {
-    
-  // Show only first 6 reviews for mobile, 8 for desktop
-  const displayReviews = window.innerWidth < 768 
-    ? dummyReviews.slice(0, 6) 
-    : dummyReviews.slice(0, 8);
+  const [slidesPerView, setSlidesPerView] = useState(1);
+  const [isHovering, setIsHovering] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
+  // Responsive slides
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
 
+    if (windowWidth >= 1280) setSlidesPerView(4);
+    else if (windowWidth >= 1024) setSlidesPerView(3);
+    else if (windowWidth >= 768) setSlidesPerView(2);
+    else setSlidesPerView(1);
 
-  const ReviewCard = ({ review, index }) => {
-    // Truncate review based on screen size - shorter for mobile
-    const isMobile = window.innerWidth < 768;
-    const maxLength = isMobile ? 100 : 150;
-    const truncatedReview = review.review.length > maxLength 
-      ? review.review.substring(0, maxLength) + "..."
-      : review.review;
+    return () => window.removeEventListener('resize', handleResize);
+  }, [windowWidth]);
 
-    return (
-      <motion.div variants={itemVariants}>
-        <Paper
-          elevation={0}
-          sx={{
-            mb: { xs: 1.5, md: 2 },
-            p: { xs: 2, md: 3 },
-            borderRadius: { xs: '12px', md: '16px' },
-            border: '1px solid #e2e8f0',
-            backgroundColor: 'white',
-            position: 'relative',
-            overflow: 'hidden',
-            height: { xs: '220px', sm: '260px', md: '290px' },
-            display: 'flex',
-            flexDirection: 'column',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            '&:hover': {
-              transform: { xs: 'translateY(-4px)', md: 'translateY(-8px)' },
-              boxShadow: { 
-                xs: '0 15px 35px -8px rgba(0, 0, 0, 0.12)',
-                md: '0 25px 50px -12px rgba(0, 0, 0, 0.15)' 
-              },
-              borderColor: '#3b82f6',
-            },
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: { xs: '3px', md: '4px' },
-              background: 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
-            }
-          }}
-        >
-          {/* Quote Icon */}
-          <Box sx={{ 
-            position: 'absolute', 
-            top: { xs: 12, md: 16 }, 
-            right: { xs: 12, md: 16 },
-            opacity: 0.1,
-            transform: 'rotate(180deg)'
-          }}>
-            <QuoteIcon sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, color: '#3b82f6' }} />
-          </Box>
-
-          {/* Rating Stars */}
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: { xs: 1.5, md: 2 }, gap: 0.5 }}>
-            {[...Array(5)].map((_, i) => (
-              <StarIcon 
-                key={i} 
-                sx={{ 
-                  fontSize: { xs: '0.9rem', md: '1rem' }, 
-                  color: '#fbbf24',
-                  filter: 'drop-shadow(0 1px 2px rgba(251, 191, 36, 0.3))'
-                }} 
-              />
-            ))}
-            <Typography variant="caption" sx={{ ml: 1, color: '#64748b', fontWeight: '500', fontSize: { xs: '0.7rem', md: '0.75rem' } }}>
-              5.0
-            </Typography>
-          </Box>
-
-          {/* Review Text */}
-          <Box sx={{ flex: 1, mb: { xs: 1, md: 3 } }}>
-            <Typography
-              variant="body2"
-              sx={{
-                color: '#475569',
-                fontSize: { xs: '0.75rem', md: '0.95rem' },
-                lineHeight: 1.6,
-                fontStyle: 'italic',
-                fontWeight: '400',
-                display: '-webkit-box',
-                overflow: 'hidden',
-                WebkitLineClamp: { xs: 3, md: 4 },
-                WebkitBoxOrient: 'vertical',
-              }}
-            >
-              "{truncatedReview}"
-            </Typography>
-          </Box>
-
-          {/* Divider */}
-          <Box
-            sx={{
-              width: '100%',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%)',
-              mb: { xs: 1, md: 2.5 },
-            }}
-          />
-
-          {/* User Info */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, md: 2 } }}>
-            <Avatar
-              sx={{
-                width: { xs: 32, md: 44 },
-                height: { xs: 32, md: 44 },
-                background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-                color: 'white',
-                fontWeight: '600',
-                fontSize: { xs: '0.9rem', md: '1rem' },
-                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-              }}
-            >
-              {review.avatar}
-            </Avatar>
-            
-            <Box sx={{ flex: 1, minWidth: 0 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8, mb: 0.3 }}>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    fontWeight: '600',
-                    color: '#0f172a',
-                    fontSize: { xs: '0.8rem', md: '0.9rem' },
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {review.name}
-                </Typography>
-                <VerifiedIcon sx={{ fontSize: { xs: '0.9rem', md: '1rem' }, color: '#3b82f6' }} />
-              </Box>
-              <Typography
-                variant="caption"
-                sx={{
-                  display: { xs: 'none', sm: 'block' },
-                  color: '#64748b',
-                  fontSize: { xs: '0.7rem', md: '0.8rem' },
-                  lineHeight: 1.3,
-                }}
-              >
-                {review.position}
-              </Typography>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: '#94a3b8',
-                  fontSize: { xs: '0.65rem', md: '0.75rem' },
-                  fontWeight: '500',
-                }}
-              >
-                {review.company}
-              </Typography>
-            </Box>
-          </Box>
-        </Paper>
-      </motion.div>
-    );
-  };
-
-
+  const displayReviews = windowWidth < 768 ? dummyReviews.slice(0, 6) : dummyReviews.slice(0, 8);
 
   return (
-    <Box
-      sx={{
-        py: { xs: 4, md: 8 },
-        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background Pattern */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
-        }}
-      />
+    <div className="py-8 px-4 sm:px-8 lg:px-20 bg-gray-50 relative">
       
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, px: { xs: 2, md: 3 } }}>
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 7 } }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Chip
-                icon={<TrendingUpIcon />}
-                label="Customer Reviews"
-                sx={{
-                  backgroundColor: '#dbeafe',
-                  color: '#1e40af',
-                  fontWeight: '600',
-                  fontSize: { xs: '0.7rem', md: '0.75rem' },
-                  mb: { xs: 2, md: 3 },
-                  px: { xs: 1.2, md: 1.5 },
-                  py: 0.3,
-                  '& .MuiChip-icon': {
-                    fontSize: { xs: '0.9rem', md: '1rem' },
-                    color: '#1e40af'
-                  }
-                }}
-              />
-            </motion.div>
-            
+    <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 2 } }}>
+      
+
+            {/* Main Title */}
             <Typography
               variant="h2"
               sx={{
                 fontWeight: '800',
-                color: '#0f172a',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+                mb: 2,
+                fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
                 lineHeight: 1.1,
-                mx: 'auto',
-                mb: { xs: 1.5, md: 2 },
-                background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                px: { xs: 1, md: 0 },
-              }}
-            >
-              What Our Clients Say
-            </Typography>
-            
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#64748b',
-                maxWidth: { xs: '320px', sm: '400px', md: '500px' },
-                mx: 'auto',
-                fontSize: { xs: '0.9rem', md: '1.1rem' },
-                lineHeight: 1.6,
-                fontWeight: '400',
-                mb: { xs: 2.5, md: 3 },
-                px: { xs: 1, md: 0 },
-              }}
-            >
-              Discover why thousands of societies and vendors trust our platform for their daily operations
-            </Typography>
-
-          </Box>
-        </motion.div>
-
-
-        {/* Reviews Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: 'repeat(2, 1fr)',
-                sm: 'repeat(2, 1fr)',
-                md: 'repeat(3, 1fr)',
-                lg: 'repeat(4, 1fr)',
-              },
-              gap: { xs: 2, md: 3 },
-              maxWidth: { sm: '90%' },
-              mx: 'auto'
-            }}
-          >
-            {displayReviews.map((review, index) => (
-              <ReviewCard key={review.id} review={review} index={index} />
-            ))}
-          </Box>
-        </motion.div>
-
-
-        {/* Enhanced CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 3,
-              mt: { xs: 6, md: 8 },
-              flexWrap: 'wrap',
-            }}
-          >
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
-                color: 'white',
-                px: { xs: 4, md: 6 },
-                py: { xs: 1.5, md: 2 },
-                borderRadius: '12px',
-                fontSize: { xs: '1rem', md: '1.1rem' },
-                fontWeight: '600',
-                textTransform: 'none',
-                boxShadow: '0 8px 25px rgba(59, 130, 246, 0.4)',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                '&:hover': {
-                  transform: 'translateY(-3px)',
-                  boxShadow: '0 15px 35px rgba(59, 130, 246, 0.5)',
+                color: '#0f172a',
+                position: 'relative',
+                display: 'inline-block',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: -10,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '60%',
+                  height: '4px',
+                   background: 'linear-gradient(90deg, transparent, #0933A6, transparent)',
+                  borderRadius: '2px',
+                  transition: 'all 0.6s ease',
                 },
               }}
             >
-              Get a Demo
-            </Button>
-            
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: '#3b82f6',
-                color: '#3b82f6',
-                px: { xs: 4, md: 6 },
-                py: { xs: 1.5, md: 2 },
-                borderRadius: '12px',
-                fontSize: { xs: '1rem', md: '1.1rem' },
-                fontWeight: '600',
-                textTransform: 'none',
-                borderWidth: '2px',
-                backgroundColor: 'white',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                '&:hover': {
-                  borderColor: '#1e40af',
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
-                  color: 'white',
-                  transform: 'translateY(-3px)',
-                  boxShadow: '0 15px 35px rgba(59, 130, 246, 0.4)',
-                  borderWidth: '2px',
-                },
-              }}
-            >
-              Start Your Trial
-            </Button>
+              What Our Customer Say
+            </Typography>
+
+
+          
           </Box>
-        </motion.div>
-      </Container>
-    </Box>
+      <div
+        className="relative"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={2}
+          slidesPerView={slidesPerView}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          loop={true}
+        >
+          {displayReviews.map((review) => {
+            const isMobile = windowWidth < 768;
+            const maxLength = isMobile ? 100 : 150;
+            const truncatedReview = review.review.length > maxLength
+              ? review.review.substring(0, maxLength) + "..."
+              : review.review;
+
+            return (
+              <SwiperSlide key={review.id}>
+                <div className="h-full flex flex-col p-2 sm:p-4">
+                  <div className="flex flex-col justify-between h-full p-5 border border-gray-200 rounded-xl shadow hover:shadow-lg transition-transform transform hover:-translate-y-1 bg-white">
+                    
+                    {/* Stars */}
+                    <div className="flex items-center gap-1 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon
+                          key={i}
+                          style={{
+                            color: '#fbbf24',
+                            fontSize: isMobile ? 16 : 18,
+                            filter: 'drop-shadow(0 1px 2px rgba(251, 191, 36, 0.3))'
+                          }}
+                        />
+                      ))}
+                      <span className="ml-1 text-gray-500 text-xs">{review.rating}.0</span>
+                    </div>
+
+                    {/* Review Text */}
+                    <p className="text-gray-600 italic mb-4 text-sm sm:text-base">
+                      "{truncatedReview}"
+                    </p>
+
+                    {/* Divider */}
+                    <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-3"></div>
+
+                    {/* User Info */}
+                    <div className="flex items-center gap-3 mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold shadow">
+                        {review.avatar}
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <div className="flex items-center gap-1">
+                          <h4 className="text-gray-900 font-semibold text-sm sm:text-base truncate">{review.name}</h4>
+                          <VerifiedIcon style={{ color: '#3b82f6', fontSize: isMobile ? 16 : 18 }} />
+                        </div>
+                        {review.position && <span className="text-gray-500 text-xs sm:text-sm truncate">{review.position}</span>}
+                        {review.company && <span className="text-gray-400 text-xs sm:text-sm truncate">{review.company}</span>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* Navigation buttons */}
+        <button
+          ref={prevRef}
+          className={`z-50 absolute top-1/2 -translate-y-1/2 left-1 sm:left-0 cursor-pointer bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <MdOutlineArrowBackIos size={20} />
+        </button>
+        <button
+          ref={nextRef}
+          className={`z-50 absolute top-1/2 -translate-y-1/2 right-1 sm:right-0 cursor-pointer bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <MdOutlineArrowForwardIos size={20} />
+        </button>
+
+        {/* Pagination */}
+        <div className="swiper-pagination flex justify-center mt-6 space-x-2"></div>
+      </div>
+    </div>
   );
 };
 

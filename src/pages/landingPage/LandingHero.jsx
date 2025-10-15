@@ -13,9 +13,9 @@ const LandingHero = ({ servicesRef, howItWorksRef, refs }) => {
       }}
     >
       {/* Services Showcase Section */}
-      <div ref={servicesRef}>
+      {/* <div ref={servicesRef}>
         <ServicesShowcase refs={refs} />
-      </div>
+      </div> */}
 
       {/* Add spacing between the two components */}
       <Box sx={{ height: 48 }} />

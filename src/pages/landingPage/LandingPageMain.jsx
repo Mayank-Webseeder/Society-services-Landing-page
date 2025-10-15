@@ -8,6 +8,7 @@ import LandingFAQ from './LandingFAQ';
 import LandingContact from './LandingContact';
 import LandingFooter from './LandingFooter';
 import { Box } from '@mui/material';
+import CTASection from './CTA';
 
 
 const LandingPageMain = () => {
@@ -52,20 +53,22 @@ const LandingPageMain = () => {
           aboutUsRef,
         }}
       />
-      
+        <div ref={faqsRef}>
+        <LandingFAQ />
+      </div>
       <div ref={testimonialsRef}>
         <LandingReviews />
       </div>
+
+<CTASection></CTASection>
       
       <div ref={contactRef}>
         <LandingContact />
       </div>
 
-      <div ref={faqsRef}>
-        <LandingFAQ />
-      </div>
+    
       
-      <LandingFooter 
+       <LandingFooter 
         refs={{
           servicesRef,
           howItWorksRef,
@@ -74,7 +77,9 @@ const LandingPageMain = () => {
           contactRef,
           aboutUsRef,
         }}
-      />
+      /> 
+
+   
     </Box>
   );
 };
