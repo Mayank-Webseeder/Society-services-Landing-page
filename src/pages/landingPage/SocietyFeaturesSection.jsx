@@ -19,9 +19,9 @@ const SocietyFeaturesSection = () => {
   ];
 
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 6 }, px: { xs: 2, md: 3 } }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 4 }, px: { xs: 2, md: 3 } }}>
       {/* Heading */}
-      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
+      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 4 } }}>
         <Typography variant="h2" sx={{
           fontWeight: "800",
           color: "#0f172a",

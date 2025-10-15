@@ -25,7 +25,6 @@ const LandingFooter = () => {
   const quickLinks = [
     { label: 'Home', section: 'home' },
     { label: 'How We Work', section: 'howItWorks' },
-    { label: 'Services', section: 'services' },
     { label: 'Contact', section: 'contact' },
   ];
 
@@ -33,7 +32,6 @@ const LandingFooter = () => {
     { label: 'FAQs', section: 'faqs' },
     { label: 'Reviews', section: 'reviews' },
     { label: 'About Us', section: 'about' },
-    { label: 'Blog', section: 'blog' },
   ];
 
   const legalLinks = [
@@ -220,10 +218,9 @@ const LandingFooter = () => {
         {/* Bottom Bar */}
         <div className="py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-slate-400 text-sm order-2 md:order-1">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
-              <span>by <span className="text-orange-500 font-medium hover:text-orange-400 transition-colors cursor-pointer">Webseeder Technologies</span></span>
+            <div className="flex items-center text-slate-400 gap-2  text-sm order-2 md:order-1">
+              <span>Developed by</span>
+              <a href="https://www.webseeder.in/" className=" no-underline font-medium text-slate-400 transition-colors cursor-pointer">Webseeder Technologies</a>
             </div>
             
             <div className="text-slate-400 text-sm order-1 md:order-2">

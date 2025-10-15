@@ -7,7 +7,7 @@ const LandingAboutUs = () => {
   return (
     <Box
       sx={{
-        py: { xs: 6, md: 8, lg: 10 },
+        py: { xs: 6, md: 8, lg: 5 },
         // background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #e5e7eb 100%)',
         position: "relative",
         overflow: 'hidden',

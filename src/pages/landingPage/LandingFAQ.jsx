@@ -37,7 +37,7 @@ const LandingFAQ = () => {
   return (
     <Box
       sx={{
-        py: { xs: 4, md: 8 },
+        py: { xs: 4, md: 4 },
         px: { xs: 2, md: 0 },
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         position: 'relative',
