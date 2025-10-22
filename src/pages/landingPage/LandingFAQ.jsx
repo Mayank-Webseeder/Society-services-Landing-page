@@ -1,274 +1,140 @@
 import { useState } from 'react';
-import { Box, Container, Typography, Chip, Paper } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExpandMore as ExpandMoreIcon, Help as HelpIcon, CheckCircle as CheckCircleIcon } from '@mui/icons-material';
-import dummyFAQs from '../../static/dummyData_LandingFAQs';
+import { HelpCircle, CheckCircle, ChevronDown } from 'lucide-react';
+
+const dummyFAQs = [
+  { id: 1, question: "What is society management?", answer: "Society management involves organizing and coordinating various aspects of residential communities, including maintenance, security, and vendor services." },
+  { id: 2, question: "How does vendor management work?", answer: "Our vendor management system streamlines the process of hiring, tracking, and paying vendors for services in your society." },
+  { id: 3, question: "Is the platform secure?", answer: "Yes, we use industry-standard encryption and security protocols to protect your data and transactions." },
+  { id: 4, question: "What payment methods are supported?", answer: "We support multiple payment methods including credit cards, debit cards, UPI, and net banking." },
+  { id: 5, question: "Can I manage multiple societies?", answer: "Yes, administrators can manage multiple societies from a single dashboard with role-based access control." },
+  { id: 6, question: "Is there mobile app support?", answer: "Yes, our platform is fully responsive and we also offer dedicated mobile apps for iOS and Android." },
+  { id: 7, question: "How do I get started?", answer: "Simply sign up for an account, complete your society profile, and start adding members and vendors." },
+  { id: 8, question: "What support options are available?", answer: "We offer 24/7 customer support via email, phone, and live chat to assist with any issues or questions." }
+];
 
 const LandingFAQ = () => {
   const [expandedId, setExpandedId] = useState(null);
 
   const handleToggleExpand = (id) => {
-    setExpandedId(prevId => (prevId === id ? null : id));
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
+    setExpandedId(prev => (prev === id ? null : id));
   };
 
   return (
-    <Box
-      sx={{
-        py: { xs: 4, md: 4 },
-        px: { xs: 2, md: 0 },
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="relative min-h-screen py-8 md:py-16 px-4 md:px-8 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-200">
       {/* Background Pattern */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+      <div
+        className="absolute inset-0 opacity-50"
+        style={{
           backgroundImage:
-            'radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)',
+            'radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)'
         }}
       />
 
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 7 } }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Chip
-                icon={<HelpIcon />}
-                label="Frequently Asked Questions"
-                sx={{
-                  backgroundColor: '#dbeafe',
-                  color: '#1e40af',
-                  fontWeight: '600',
-                  fontSize: { xs: '0.7rem', md: '0.75rem' },
-                  mb: { xs: 2, md: 3 },
-                  px: { xs: 1, md: 1.5 },
-                  py: 0.3,
-                  '& .MuiChip-icon': {
-                    fontSize: { xs: '0.9rem', md: '1rem' },
-                    color: '#1e40af'
-                  }
-                }}
-              />
-            </motion.div>
+        <div className="text-center mb-8 md:mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 md:mb-6 rounded-full bg-blue-100 text-blue-800  text-xs md:text-sm">
+            <HelpCircle className="w-4 h-4" />
+            <span>Frequently Asked Questions</span>
+          </div>
 
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: '800',
-                color: '#0f172a',
-                fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2.5rem', lg: '3rem' },
-                lineHeight: { xs: 1.2, md: 1.1 },
-                mx: 'auto',
-                mb: { xs: 1.5, md: 2 },
-                background: 'linear-gradient(135deg, #1e293b 0%, #3b82f6 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              Got Questions?
-              <br />
-              We've Got Answers
-            </Typography>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl  mb-3 md:mb-4 bg-gradient-to-r from-slate-800 to-blue-600 bg-clip-text text-transparent leading-tight">
+            Got Questions?
+            <br />
+            We've Got Answers
+          </h2>
 
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#64748b',
-                maxWidth: { xs: '90%', sm: '400px', md: '500px' },
-                mx: 'auto',
-                fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.1rem' },
-                lineHeight: { xs: 1.5, md: 1.6 },
-                fontWeight: '400',
-                px: { xs: 1, md: 0 }
-              }}
-            >
-              Find answers to common questions about our society and vendor management platform
-            </Typography>
-          </Box>
-        </motion.div>
+          <p className="text-slate-600 text-sm md:text-lg max-w-xl mx-auto leading-relaxed">
+            Find answers to common questions about our society and vendor management platform
+          </p>
+        </div>
 
         {/* FAQ List */}
-        <motion.div variants={containerVariants} initial="hidden" animate="visible">
-          <Box sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' },
-            columnGap: { xs: 0, lg: 3, xl: 7 },
-            maxWidth: { xs: '100%', sm: '90%', md: '80%', lg: '90%', xl: '85%' },
-            mx: 'auto'
-          }}>
-            {dummyFAQs.map((faq, index) => (
-              <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-6 max-w-6xl mx-auto">
+          {dummyFAQs.map((faq) => {
+            const isExpanded = expandedId === faq.id;
+
+            return (
+              <div
                 key={faq.id}
-                variants={itemVariants}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className={`bg-white rounded-xl border transition-all duration-300 overflow-hidden ${
+                  isExpanded
+                    ? 'border-blue-500 shadow-lg shadow-blue-100'
+                    : 'border-slate-200 hover:border-blue-400 hover:shadow-md'
+                }`}
               >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mb: { xs: 1.5, md: 2 },
-                    borderRadius: { xs: '8px', md: '12px' },
-                    overflow: 'hidden',
-                    border: '1px solid',
-                    borderColor: expandedId === faq.id ? '#3b82f6' : '#e2e8f0',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    '&:hover': {
-                      borderColor: '#3b82f6',
-                      transform: { xs: 'none', md: 'translateY(-1px)' },
-                      boxShadow: { xs: 'none', md: '0 8px 20px rgba(59, 130, 246, 0.12)' },
-                    },
-                  }}
+                <div
+                  onClick={() => handleToggleExpand(faq.id)}
+                  className={`flex items-center justify-between cursor-pointer p-4 md:p-6 transition-colors duration-300 ${
+                    isExpanded ? 'bg-slate-50' : 'bg-white'
+                  }`}
                 >
-                  <Box
-                    onClick={() => handleToggleExpand(faq.id)}
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      cursor: 'pointer',
-                      py: { xs: 1.5, md: 2.5 },
-                      px: { xs: 2, md: 3 },
-                      backgroundColor: expandedId === faq.id ? '#f8fafc' : 'white',
-                      transition: 'all 0.3s ease',
-                      position: 'relative',
-                      minHeight: { xs: '60px', md: 'auto' },
-                    }}
-                  >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 1.5 }, flex: 1 }}>
-                      <Box sx={{
-                        p: { xs: 0.5, md: 0.75 },
-                        borderRadius: { xs: '6px', md: '8px' },
-                        backgroundColor: expandedId === faq.id ? '#3b82f6' : '#dbeafe',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minWidth: { xs: 24, md: 30 },
-                        height: { xs: 24, md: 30 },
-                        transition: 'all 0.3s ease',
-                      }}>
-                        <CheckCircleIcon
-                          sx={{
-                            fontSize: { xs: '0.875rem', md: '1rem' },
-                            color: expandedId === faq.id ? 'white' : '#3b82f6'
-                          }}
-                        />
-                      </Box>
-
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontWeight: '700',
-                          color: expandedId === faq.id ? '#3b82f6' : '#0f172a',
-                          fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
-                          lineHeight: { xs: 1.3, md: 1.4 },
-                          transition: 'color 0.3s ease',
-                          pr: { xs: 1, md: 0 },
-                        }}
-                      >
-                        {faq.question}
-                      </Typography>
-                    </Box>
-
-                    <motion.div
-                      animate={{ rotate: expandedId === faq.id ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
+                  <div className="flex items-center gap-3 md:gap-4 flex-1 pr-2">
+                    <div
+                      className={`flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-lg transition-colors duration-300 ${
+                        isExpanded ? 'bg-blue-500' : 'bg-blue-100'
+                      }`}
                     >
-                      <Box sx={{
-                        p: { xs: 0.5, md: 0.75 },
-                        borderRadius: { xs: '4px', md: '6px' },
-                        backgroundColor: expandedId === faq.id ? '#3b82f6' : '#f1f5f9',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minWidth: { xs: 28, md: 32 },
-                        height: { xs: 28, md: 32 },
-                        transition: 'all 0.3s ease',
-                      }}>
-                        <ExpandMoreIcon
-                          sx={{
-                            fontSize: { xs: '1.1rem', md: '1.25rem' },
-                            color: expandedId === faq.id ? 'white' : '#64748b'
-                          }}
-                        />
-                      </Box>
-                    </motion.div>
-                  </Box>
+                      <CheckCircle
+                        className={`w-4 h-4 md:w-5 md:h-5 ${
+                          isExpanded ? 'text-white' : 'text-blue-500'
+                        }`}
+                      />
+                    </div>
 
-                  {/* Smooth AnimatePresence Expansion */}
-                  <AnimatePresence initial={false}>
-                    {expandedId === faq.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Box sx={{ px: 3, py: 2, backgroundColor: '#f8fafc' }}>
-                          <Typography
-                            variant="body1"
-                            sx={{
-                              color: '#475569',
-                              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '0.95rem' },
-                              lineHeight: { xs: 1.5, md: 1.6 },
-                              fontWeight: '400',
-                            }}
-                          >
-                            {faq.answer}
-                          </Typography>
-                        </Box>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </Paper>
-              </motion.div>
-            ))}
-          </Box>
-        </motion.div>
-        
-      </Container>
-    </Box>
+                    <h3
+                      className={`text-sm md:text-base  transition-colors duration-300 ${
+                        isExpanded ? 'text-blue-600' : 'text-slate-900'
+                      }`}
+                    >
+                      {faq.question}
+                    </h3>
+                  </div>
+
+                  <div
+                    className={`flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-lg transition-all duration-300 ${
+                      isExpanded ? 'bg-blue-500' : 'bg-slate-100'
+                    }`}
+                  >
+                    <ChevronDown
+                      className={`w-5 h-5 md:w-6 md:h-6 transition-all duration-300 ${
+                        isExpanded ? 'rotate-180 text-white' : 'text-slate-600'
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {/* Answer Section */}
+                <div
+                  className={`transition-all duration-300 overflow-hidden ${
+                    isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-4 md:px-6 py-4 md:py-5 bg-slate-50">
+                    <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

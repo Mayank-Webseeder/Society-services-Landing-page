@@ -17,7 +17,7 @@ const LandingIntro = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-gray-50 py-20 overflow-hidden">
+    <section className="bg-gray-50 lg:py-20 py-5 overflow-hidden">
       <div className="max-w-[90vw] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         {/* ===== Left Content ===== */}
         <motion.div
@@ -27,7 +27,7 @@ const LandingIntro = () => {
           className="text-center md:text-left"
         >
           {/* Title */}
-     <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight
+     <h1 className="text-4xl lg:py-5 sm:text-5xl md:text-6xl font-extrabold leading-tight
                bg-gradient-to-r  via-[#6EA1E4] from-[#F88B11]  to-[#52CED7]
                bg-clip-text text-transparent">
   My Society Needs
@@ -35,14 +35,15 @@ const LandingIntro = () => {
 
 
           {/* Subtitle */}
-          <h2 className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mt-3">
-            A Single Operating Platform for Your Community Services
+          <h2 className="text-lg sm:text-xl md:text-xl text-gray-600 font-medium mt-3">
+            Unique Operating Platform for Your Society Needs for Services and Products
           </h2>
 
           {/* Description */}
-          <p className="text-gray-500 text-base md:text-lg mt-4 leading-relaxed max-w-md mx-auto md:mx-0">
-            Manage maintenance, vendors, and residents in one place — built for
-            clarity, accountability, and faster community solutions.
+          <p className="text-gray-500 text-base md:text-lg mt-4 leading-relaxed max-w-lg lg:text-justify mx-auto md:mx-0">
+        Manage transparent, compliant, timebound and verified vendors for all your Society requirements for great satisfaction and experience. <br />
+Society can register freely and post their requirements and vendors can register to grow their business multi-fold with their excellent services
+
           </p>
 
           {/* Buttons */}

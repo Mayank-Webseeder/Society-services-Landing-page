@@ -1,103 +1,79 @@
-import { Box, Typography, Container, Paper } from "@mui/material";
 import {
-  Work as WorkIcon,
-  People as PeopleIcon,
-  Payment as PaymentIcon,
-  Groups as GroupsIcon,
-  Analytics as AnalyticsIcon,
-} from "@mui/icons-material";
+  MdWork,
+  MdPeople,
+  MdPayment,
+  MdGroups,
+  MdAnalytics,
+} from "react-icons/md";
 import vendorImg from "../../assets/vendorImg.jpeg";
 
 const VendorFeaturesSection = () => {
   const vendorFeatures = [
-    { id: "jobs", icon: WorkIcon, title: "Job Management & Scheduling", color: "#f59e0b" },
-    { id: "clients", icon: PeopleIcon, title: "Client Relationship Management", color: "#3b82f6" },
-    { id: "payments", icon: PaymentIcon, title: "Payment & Billing Solutions", color: "#10b981" },
-    { id: "workforce", icon: GroupsIcon, title: "Workforce Management", color: "#8b5cf6" },
-    { id: "analytics", icon: AnalyticsIcon, title: "Business Analytics & Insights", color: "#ef4444" },
+    { id: "jobs", icon: MdWork, title: "Job Management & Scheduling", color: "#f59e0b" },
+    { id: "clients", icon: MdPeople, title: "Client Relationship Management", color: "#3b82f6" },
+    { id: "payments", icon: MdPayment, title: "Payment & Billing Solutions", color: "#10b981" },
+    { id: "workforce", icon: MdGroups, title: "Workforce Management", color: "#8b5cf6" },
+    { id: "analytics", icon: MdAnalytics, title: "Business Analytics & Insights", color: "#ef4444" },
   ];
 
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 4 }, px: { xs: 2, md: 3 } }}>
+    <section className="py-12 px-4 md:px-20 ">
       {/* Heading */}
-      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
-        <Typography variant="h2" sx={{
-          fontWeight: "800",
-          color: "#0f172a",
-          mb: 2,
-          fontSize: { xs: "1.5rem", md: "2.5rem" },
-        }}>
-          Empower your Service Business with our Vendor Platform
-        </Typography>
-        <Typography sx={{ color: "#64748b", fontSize: { xs: "0.9rem", md: "1.1rem" }, maxWidth: 600, mx: "auto" }}>
-          Scale your business operations, manage your workforce, and deliver exceptional service to societies
-        </Typography>
-      </Box>
+      <div className="text-center mb-10 md:mb-16">
+        <h2 className="text-slate-900 mb-2 text-lg md:text-3xl font-bold">
+         Empower your Business with our Vendor Platform
+        </h2>
+        <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto">
+Scale your business operations, improve your performance and deliver exceptional results to Societies for their various needs of Services and Material. 
 
-      <Box sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        gap: { xs: 4, md: 6 },
-        alignItems: "flex-start",
-        maxWidth: "95%",
-        mx: "auto"
-      }}>
-        {/* Left Image */}
+        </p>
 
-           <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto pt-5">
+If you are one of vendor fulfilling any Housing Society requirements then this platform will get your business recognised and zoom your business to new heights of success and performance
+
+        </p>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col md:flex-row gap-6 md:gap-12  ">
+            <div className="flex-1 flex flex-col gap-4 md:gap-6">
           {vendorFeatures.map((feature) => {
             const IconComponent = feature.icon;
             return (
-              <Paper key={feature.id} elevation={0} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 2,
-                p: { xs: 2, md: 3 },
-                borderRadius: 2,
-                border: `1px solid ${feature.color}20`,
-                height: 80, // uniform height
-                backgroundColor: "#fff",
-              }}>
-                <Box sx={{
-                  p: 1,
-                  borderRadius: 1,
-                  backgroundColor: `${feature.color}15`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minWidth: 48,
-                  minHeight: 48,
-                }}>
-                  <IconComponent sx={{ color: feature.color, fontSize: 28 }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: "#0f172a" }}>
+              <div
+                key={feature.id}
+                className="flex items-center gap-4 p-4 md:p-6 rounded-xl border bg-white hover:shadow-lg transition-shadow duration-300"
+                style={{ borderColor: `${feature.color}20`, height: "80px", width: "100%" }}
+              >
+                <div
+                  className="flex items-center justify-center rounded-lg min-w-[48px] min-h-[48px]"
+                  style={{ backgroundColor: `${feature.color}15`, padding: "0.25rem" }}
+                >
+                  <IconComponent style={{ color: feature.color, fontSize: 28 }} />
+                </div>
+                <h3 className="text-slate-900 text-sm md:text-base font-medium">
                   {feature.title}
-                </Typography>
-              </Paper>
-            )
+                </h3>
+              </div>
+            );
           })}
-        </Box>
-      
+        </div>
+        {/* Left Image */}
+        <div className="flex-1 mx-auto">
+          <div className="w-full h-72 md:h-[500px] rounded-xl overflow-hidden border border-slate-200">
+            <img
+              src="/img-1.jpg"
+              alt="Vendor Management Dashboard Preview"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
 
         {/* Right Features */}
-       <Box sx={{ flex: 1, mx: "auto" }}>
-          <Box sx={{
-            width: "100%",
-            height: { xs: 300, md: 500 },
-            borderRadius: "16px",
-            overflow: "hidden",
-            border: "1px solid #e2e8f0",
-          }}>
-            <img
-              src="https://images.unsplash.com/photo-1587955415524-bb264e518428?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
-              alt="Vendor Management Dashboard Preview"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </Box>
-        </Box>
-      </Box>
-    </Container>
-  )
+    
+      </div>
+    </section>
+  );
 };
 
 export default VendorFeaturesSection;

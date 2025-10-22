@@ -101,7 +101,6 @@ const LandingAboutUs = () => {
               <Typography
                 sx={{
                   fontSize: '0.75rem',
-                  fontWeight: '600',
                   color: '#3b82f6',
                   letterSpacing: '0.5px',
                   textTransform: 'uppercase',
@@ -122,7 +121,6 @@ const LandingAboutUs = () => {
             <Typography
               variant="h2"
               sx={{
-                fontWeight: '800',
                 mb: 2,
                 fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
                 lineHeight: 1.1,
@@ -165,7 +163,7 @@ const LandingAboutUs = () => {
         >
           <Box
             sx={{
-              width: { xs: '100%', sm: '95%', md: '90%' },
+              width: { xs: '100%', sm: '95%', md: '95%' },
               mx: 'auto',
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -256,15 +254,13 @@ const LandingAboutUs = () => {
                       textAlign: { xs: 'left', sm: 'left' },
                     }}
                   >
-                    At <strong style={{ color: '#1e293b', fontWeight: '600' }}>My Society Needs</strong>, we specialize in delivering seamless Society and
-                    Vendor Management solutions tailored to the unique needs of
-                    residential societies and service providers. With services that
-                    span across facility management, vendor coordination, and
-                    resident services, we ensure every interaction is as efficient
-                    as it is reliable. Our dedicated team leverages advanced
-                    technology and industry expertise to streamline operations,
-                    enhance communication, and provide peace of mind for all
-                    stakeholders involved.
+
+
+
+                    At <strong style={{ color: '#1e293b', fontWeight: '600' }}>My Society Needs</strong>, we specialize in delivering seamless Society solutions tailored to the unique needs of residential societies for their day-to-day management and also for specialized services needed not so often. Where Society authorised person just need to post their Society requirement and relax to get the option of multiple vendors showing interest to fulfil the need. These platform gives opportunity to Society to select the right vendor at right price and save lots of funds and reduce the maintenance cost of Societies. 
+With services that span across Facility Management, Repair Maintenance, Procurement, Staff Management, Legal requirements, Committee Education and Training, and Specialised Services like proper handover from builder, we ensure every interaction is as efficient as it is reliable. Our dedicated team leverages advanced technology and industry expertise to streamline operations, enhance communication, and provide peace of mind for all stakeholders involved.
+
+                    
                   </Typography>
                 </Box>
 
@@ -286,14 +282,9 @@ const LandingAboutUs = () => {
                       textAlign: { xs: 'left', sm: 'left' },
                     }}
                   >
-                    Our commitment goes beyond technology. At <strong style={{ color: '#1e293b', fontWeight: '600' }}>My Society Needs</strong>, we strive to
-                    create management experiences that leave a lasting impression.
-                    Whether it's residential society management, vendor
-                    coordination, or a comprehensive service marketplace, we focus
-                    on fostering meaningful connections and delivering exceptional
-                    service. Every solution we design is guided by a passion for
-                    excellence, trust, and a deep understanding of what makes
-                    community living truly rewarding.
+              
+
+                    Our commitment goes beyond technology. At <strong style={{ color: '#1e293b', fontWeight: '600' }}>My Society Needs</strong>, we strive to create management experiences that leave a lasting impression. Whether it's residential society management, vendor coordination, or a comprehensive service marketplace, we focus on fostering meaningful connections and delivering exceptional service. Every solution we design is guided by a passion for excellence, trust, and a deep understanding of what makes community living truly rewarding.
                   </Typography>
                 </Box>
 

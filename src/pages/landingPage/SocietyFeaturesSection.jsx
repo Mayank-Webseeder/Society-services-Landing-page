@@ -1,102 +1,74 @@
-import { Box, Typography, Container, Paper } from "@mui/material";
 import {
-  Business as BusinessIcon,
-  Build as BuildIcon,
-  AccountBalance as AccountBalanceIcon,
-  Forum as ForumIcon,
-  Security as SecurityIcon,
-} from "@mui/icons-material";
+  MdBusiness,
+  MdBuild,
+  MdAccountBalance,
+  MdForum,
+  MdSecurity,
+} from "react-icons/md";
 import societyImg from '../../assets/societyImg.jpg';
 
 const SocietyFeaturesSection = () => {
-
   const societyFeatures = [
-    { id: "management", icon: BusinessIcon, title: "Society Management & Administration", color: "#3b82f6" },
-    { id: "maintenance", icon: BuildIcon, title: "Maintenance & Service Management", color: "#f59e0b" },
-    { id: "financial", icon: AccountBalanceIcon, title: "Financial Management & Reporting", color: "#10b981" },
-    { id: "communication", icon: ForumIcon, title: "Communication & Resident Services", color: "#8b5cf6" },
-    { id: "security", icon: SecurityIcon, title: "Security & Access Control", color: "#ef4444" },
-  ];
+    { id: "management", icon: MdBusiness, title: "Handover from Builder ", color: "#3b82f6" },
+    { id: "maintenance", icon: MdBuild, title: "Facility Management ", color: "#f59e0b" },
+    { id: "financial", icon: MdAccountBalance, title: "Repair Maintenance ", color: "#10b981" },
+    { id: "communication", icon: MdForum, title: "Procurement", color: "#8b5cf6" },
+    { id: "security", icon: MdSecurity, title: "Staff Management ", color: "#ef4444" },
+    { id: "Legal", icon: MdSecurity, title: "Legal requirements", color: "#ef4444" },
+    { id: "Committee", icon: MdSecurity, title: "Committee Education and Training,", color: "#ef4444" },
+  ]; 
 
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 4 }, px: { xs: 2, md: 3 } }}>
+    <section className="py-5 px-4 md:px-20">
       {/* Heading */}
-      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 4 } }}>
-        <Typography variant="h2" sx={{
-          fontWeight: "800",
-          color: "#0f172a",
-          mb: 2,
-          fontSize: { xs: "1.5rem", md: "2.5rem" },
-        }}>
-          Combine all your Society systems into one platform
-        </Typography>
-        <Typography sx={{ color: "#64748b", fontSize: { xs: "0.9rem", md: "1.1rem" }, maxWidth: 600, mx: "auto" }}>
+      <div className="text-center mb-10 md:mb-16">
+        <h2 className="text-slate-900 mb-2 text-lg md:text-3xl ">
+          Combine all your Society Needs under one platform
+        </h2>
+        <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto">
           Streamline operations, enhance communication, and create a seamless experience for your society members
-        </Typography>
-      </Box>
+        </p>
+      </div>
 
-      <Box sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        gap: { xs: 4, md: 6 },
-        alignItems: "flex-start",
-        maxWidth: "95%",
-        mx: "auto"
-      }}>
+      {/* Content */}
+      <div className="flex flex-col md:flex-row gap-6 md:gap-12 ">
         {/* Left Image */}
-        <Box sx={{ flex: 1, mx: "auto" }}>
-          <Box sx={{
-            width: "100%",
-            height: { xs: 300, md: 500 },
-            borderRadius: "16px",
-            overflow: "hidden",
-            border: "1px solid #e2e8f0",
-          }}>
+        <div className="flex-1">
+          <div className="min-w-full h-72 md:h-[706px] rounded-xl overflow-hidden border border-slate-200">
             <img
-              src={societyImg}
+              src="img-2.jpg"
               alt="Society Management Dashboard Preview"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className="w-full h-full object-cover"
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
 
         {/* Right Features */}
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <div className="flex-1 flex flex-col gap-4 md:gap-6">
           {societyFeatures.map((feature) => {
             const IconComponent = feature.icon;
             return (
-              <Paper key={feature.id} elevation={0} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 2,
-                p: { xs: 2, md: 3 },
-                borderRadius: 2,
-                border: `1px solid ${feature.color}20`,
-                height: 80, // fixed height for all cards
-                backgroundColor: "#fff",
-              }}>
-                <Box sx={{
-                  p: 1,
-                  borderRadius: 1,
-                  backgroundColor: `${feature.color}15`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minWidth: 48,
-                  minHeight: 48,
-                }}>
-                  <IconComponent sx={{ color: feature.color, fontSize: 28 }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: "#0f172a" }}>
+              <div
+                key={feature.id}
+                className="flex items-center gap-4 p-4 md:p-6 rounded-xl border bg-white"
+                style={{ borderColor: `${feature.color}20`, height: "80px" }}
+              >
+                <div
+                  className="flex items-center justify-center rounded-lg min-w-[48px] min-h-[48px]"
+                  style={{ backgroundColor: `${feature.color}15`, padding: "0.25rem" }}
+                >
+                  <IconComponent style={{ color: feature.color, fontSize: 20 }} />
+                </div>
+                <h3 className="text-slate-900 text-sm md:text-base font-medium">
                   {feature.title}
-                </Typography>
-              </Paper>
-            )
+                </h3>
+              </div>
+            );
           })}
-        </Box>
-      </Box>
-    </Container>
-  )
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default SocietyFeaturesSection;

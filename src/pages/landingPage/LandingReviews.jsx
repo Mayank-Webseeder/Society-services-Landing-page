@@ -7,13 +7,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import dummyReviews from '../../static/dummyData_Reviews';
 import { Star as StarIcon, Verified as VerifiedIcon } from '@mui/icons-material';
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const LandingReviews = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
-  const [isHovering, setIsHovering] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const swiperRef = useRef(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -34,45 +34,39 @@ const LandingReviews = () => {
 
   return (
     <div className="py-8 px-4 sm:px-8 lg:px-20 bg-gray-50 relative">
-      
-    <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 2 } }}>
-      
+      <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 2 } }}>
+        <Typography
+          variant="h2"
+          sx={{
+            mb: 2,
+            fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
+            lineHeight: 1.1,
+            color: '#0f172a',
+            position: 'relative',
+            display: 'inline-block',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: -10,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '60%',
+              height: '4px',
+              background: 'linear-gradient(90deg, transparent, #0933A6, transparent)',
+              borderRadius: '2px',
+              transition: 'all 0.6s ease',
+            },
+          }}
+        >
+          What Our Customers Say
+        </Typography>
+      </Box>
 
-            {/* Main Title */}
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: '800',
-                mb: 2,
-                fontSize: { xs: '1rem', sm: '2rem', md: '2rem' },
-                lineHeight: 1.1,
-                color: '#0f172a',
-                position: 'relative',
-                display: 'inline-block',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: -10,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '60%',
-                  height: '4px',
-                   background: 'linear-gradient(90deg, transparent, #0933A6, transparent)',
-                  borderRadius: '2px',
-                  transition: 'all 0.6s ease',
-                },
-              }}
-            >
-              What Our Customer Say
-            </Typography>
-
-
-          
-          </Box>
+      {/* Swiper Wrapper with hover control */}
       <div
         className="relative"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
+        onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
+        onMouseLeave={() => swiperRef.current?.autoplay?.start()}
       >
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -85,6 +79,7 @@ const LandingReviews = () => {
           onBeforeInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
+            swiperRef.current = swiper;
           }}
           autoplay={{ delay: 3500, disableOnInteraction: false }}
           loop={true}
@@ -109,11 +104,11 @@ const LandingReviews = () => {
                           style={{
                             color: '#fbbf24',
                             fontSize: isMobile ? 16 : 18,
-                            filter: 'drop-shadow(0 1px 2px rgba(251, 191, 36, 0.3))'
+                            filter: 'drop-shadow(0 1px 2px rgba(251, 191, 36, 0.3))',
                           }}
                         />
                       ))}
-                      <span className="ml-1 text-gray-500 text-xs">{review.rating}.0</span>
+                      <span className="ml-1 text-gray-500 text-xs">{review.rating}</span>
                     </div>
 
                     {/* Review Text */}
@@ -126,16 +121,13 @@ const LandingReviews = () => {
 
                     {/* User Info */}
                     <div className="flex items-center gap-3 mt-auto">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold shadow">
-                        {review.avatar}
-                      </div>
+                   
                       <div className="flex flex-col min-w-0">
                         <div className="flex items-center gap-1">
                           <h4 className="text-gray-900 font-semibold text-sm sm:text-base truncate">{review.name}</h4>
                           <VerifiedIcon style={{ color: '#3b82f6', fontSize: isMobile ? 16 : 18 }} />
                         </div>
-                        {review.position && <span className="text-gray-500 text-xs sm:text-sm truncate">{review.position}</span>}
-                        {review.company && <span className="text-gray-400 text-xs sm:text-sm truncate">{review.company}</span>}
+                
                       </div>
                     </div>
                   </div>
@@ -144,23 +136,6 @@ const LandingReviews = () => {
             );
           })}
         </Swiper>
-
-        {/* Navigation buttons */}
-        <button
-          ref={prevRef}
-          className={`z-50 absolute top-1/2 -translate-y-1/2 left-1 sm:left-0 cursor-pointer bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <MdOutlineArrowBackIos size={20} />
-        </button>
-        <button
-          ref={nextRef}
-          className={`z-50 absolute top-1/2 -translate-y-1/2 right-1 sm:right-0 cursor-pointer bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <MdOutlineArrowForwardIos size={20} />
-        </button>
-
-        {/* Pagination */}
-        <div className="swiper-pagination flex justify-center mt-6 space-x-2"></div>
       </div>
     </div>
   );
